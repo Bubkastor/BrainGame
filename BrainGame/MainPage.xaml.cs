@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using ViewModels;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -22,9 +23,11 @@ namespace BrainGame
     /// </summary>
     public sealed partial class MainPage : Page
     {
+        public OrganizationViewModel Organization { get; set; }
         public MainPage()
         {
-            this.InitializeComponent();
+            this.InitializeComponent();            
+            Organization = new OrganizationViewModel("Office");
         }
     }
 }

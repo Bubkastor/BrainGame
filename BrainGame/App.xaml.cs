@@ -14,6 +14,9 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using Microsoft.EntityFrameworkCore;
+using Models;
+using Data;
 
 namespace BrainGame
 {
@@ -30,6 +33,10 @@ namespace BrainGame
         {
             this.InitializeComponent();
             this.Suspending += OnSuspending;
+            using (var db = new GameContext())
+            {
+                db.Database.Migrate();
+            }
         }
 
         /// <summary>

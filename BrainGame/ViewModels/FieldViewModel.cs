@@ -12,27 +12,31 @@ namespace ViewModels
     public class FieldViewModel : NotificationBase
     {
         FieldSlot fieldSlot;
-        public FieldViewModel()
+        public FieldViewModel(String name)
         {
-            fieldSlot = new FieldSlot();
-            foreach(var row in fieldSlot.Numbers)
+            fieldSlot = new FieldSlot(name);
+            foreach (var it in fieldSlot.Numbers)
             {
-                foreach (var slot in row)
-                {
-                    var np = new SlotViewModel(slot);
-                    np.PropertyChanged += Slot_OnNotifyPropertyChanged;                    
-                }
-                
+                var np = new SlotViewModel(it);
+                np.PropertyChanged += Slot_OnNotifyPropertyChanged;
+                _Slot.Add(np);
             }
         }
+        public string Name
+        {
+            get { return fieldSlot.Name; }
+        }
 
-        ObservableCollection<SlotViewModel> _Slot = new ObservableCollection<SlotViewModel>() ;
+        private ObservableCollection<SlotViewModel> _Slot = new ObservableCollection<SlotViewModel>();
+
         public ObservableCollection<SlotViewModel> Slot
         {
             get { return _Slot; }
             set { SetProperty(ref _Slot, value); }
         }
-        int _SelectedIndex;
+
+        private int _SelectedIndex;
+
         public int SelectedIndex
         {
             get { return _SelectedIndex; }
@@ -42,10 +46,12 @@ namespace ViewModels
                 { RaisePropertyChanged(nameof(SelectedSlot)); }
             }
         }
+
         public SlotViewModel SelectedSlot
         {
             get { return (_SelectedIndex >= 0) ? _Slot[_SelectedIndex] : null; }
         }
+
         void Slot_OnNotifyPropertyChanged(Object sender, PropertyChangedEventArgs e)
         {
             //fieldSlot.Update((SlotViewModel)sender);

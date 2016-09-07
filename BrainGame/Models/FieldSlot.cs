@@ -9,33 +9,38 @@ namespace Models
 {
     public class Slot
     {
-        public int value { get; set; }
-        public bool visible { get; set; } = true;
-        public Slot()
-        {
-            var rand = new Random();
-            value = rand.Next(1, 9);
+        public int Value { get; set; }
+        public bool Visible { get; set; } = true;
+        public Slot() { }
+        public Slot(int value)
+        {            
+            Value = value;
         }
     }
     public class FieldSlot
     {
-        public Slot [][] Numbers { get; set; }        
-        public FieldSlot()
+        public List<Slot> Numbers { get; set; }      
+        public String Name { get; set; }  
+        public FieldSlot(String Name)
         {
-            Numbers = new Slot[5][];
-            for (int i = 0; i < Numbers.Length; i++)
+            this.Name = Name;
+            this.Numbers = new List<Slot>();
+            var rand = new Random();
+            for (int i = 0; i < 25; i++)
             {
-                Numbers[i] = new Slot[5];
-            }
-            for (int i = 0; i < Numbers.Length; i++)
-            {
-                for (int j = 0; j < Numbers[i].Length; j++)
-                {
-                    Numbers[i][j] = new Slot();
-                }
-                
-            }
-
+               
+                this.Numbers.Add(new Slot(rand.Next(1, 9)));
+            }           
+        }
+        public void Add(Slot slot)
+        {
+            if (!Numbers.Contains(slot))            
+                Numbers.Add(slot);            
+        }
+        public void Delete(Slot slot)
+        {
+            if (Numbers.Contains(slot))
+                Numbers.Remove(slot);
         }
     }
 }

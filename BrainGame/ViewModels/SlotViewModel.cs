@@ -20,6 +20,11 @@ namespace ViewModels
             get { return This.Visible; }
             set { SetProperty(This.Visible, value, () => This.Visible = value); }
         }
+        public bool IsSelected
+        {
+            get { return This.IsSelected; }
+            set { SetProperty(This.IsSelected, value, () => This.IsSelected = value); }
+        }
 
     }
 }

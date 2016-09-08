@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
 using Windows.UI.Xaml.Data;
+using Models;
 
 namespace Converters
 {
@@ -12,7 +12,7 @@ namespace Converters
     {
         public object Convert(object value, Type targetType, object parameter, string culture)
         {
-            return (value == null) 
+            return (value != null) 
                 ? Windows.UI.Xaml.Visibility.Collapsed
                 : Windows.UI.Xaml.Visibility.Visible;
         }

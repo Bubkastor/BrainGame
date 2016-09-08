@@ -11,10 +11,12 @@ namespace Models
     {
         public int Value { get; set; }
         public bool Visible { get; set; } = true;
+        public bool IsSelected { get; set; } = false;
         public Slot() { }
-        public Slot(int value)
+        public Slot(int value, bool visible)
         {            
             Value = value;
+            Visible = visible;
         }
     }
     public class FieldSlot
@@ -26,10 +28,11 @@ namespace Models
             this.Name = Name;
             this.Numbers = new List<Slot>();
             var rand = new Random();
+            bool visible = false;
             for (int i = 0; i < 25; i++)
-            {
-               
-                this.Numbers.Add(new Slot(rand.Next(1, 9)));
+            {               
+                this.Numbers.Add(new Slot(rand.Next(1, 9), visible));
+                visible = !visible;
             }           
         }
         public void Add(Slot slot)

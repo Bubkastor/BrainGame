@@ -12,7 +12,7 @@ namespace ViewModels
     public class FieldViewModel : NotificationBase
     {
         FieldSlot fieldSlot;
-        public FieldViewModel(String name)
+        public FieldViewModel(String name)//, List<Slot> Number)
         {
             fieldSlot = new FieldSlot(name);
             foreach (var it in fieldSlot.Numbers)
@@ -36,6 +36,29 @@ namespace ViewModels
         }
 
         private int _SelectedIndex;
+        public void Add()
+        {
+            var slot = new SlotViewModel();
+            slot.PropertyChanged += Slot_OnNotifyPropertyChanged;
+            Slot.Add(slot);            
+            SelectedIndex = Slot.IndexOf(slot);
+        }
+        public void Show()
+        {
+            if ( SelectedIndex != -1)
+            {
+                var slot = Slot[SelectedIndex];
+                slot.Visible = !slot.Visible;
+            }
+        }
+        public void Delete()
+        {
+            if (SelectedIndex != -1)
+            {
+                var slot = Slot[SelectedIndex];
+                Slot.RemoveAt(SelectedIndex);
+            }
+        }
 
         public int SelectedIndex
         {

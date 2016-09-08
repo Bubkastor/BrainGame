@@ -4,21 +4,31 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:BrainGame"
     xmlns:viewModels="using:ViewModels"
+    xmlns:converters="using:Converters"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
+    <Page.Resources>
+        <converters:ObjectIsSelected x:Key="ObjectIsSelected" />
+    </Page.Resources>
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
+
         <GridView x:Name="MainBox" ItemsSource="{x:Bind FieldModel.Slot, Mode=OneWay}" SelectedIndex="{x:Bind FieldModel.SelectedIndex, Mode=TwoWay}"
-                  Width="250px" Height="250px" >
+                  Width="250px" Height="250px" SelectionMode="Single" Padding="0" IsDoubleTapEnabled="False" IsHoldingEnabled="False" IsRightTapEnabled="False" AllowFocusOnInteraction="False" Margin="55,195" Grid.RowSpan="4" >
             <GridView.ItemTemplate>
-                <DataTemplate x:DataType="viewModels:SlotViewModel">
-                    <Border BorderBrush="Black" BorderThickness="4" Padding="3 2" >
-                        <TextBlock Text="{x:Bind Value, Mode=OneWay}" />
-                    </Border>
+                <DataTemplate x:DataType="viewModels:SlotViewModel" >
+                    <RelativePanel  Visibility="{Binding Visible}"  Background="{Binding IsSelected,  Mode=TwoWay, Converter={StaticResource ObjectIsSelected}}" Width="45" Height="45" >
+                        <TextBlock  Text="{x:Bind Value, Mode=OneWay}"                                
+                                Tapped="TextBlock_Tapped" Margin="0" HorizontalAlignment="Center" VerticalAlignment="Center" Height="50" Width="50" TextReadingOrder="UseFlowDirection" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignVerticalCenterWithPanel="True" LineHeight="10" TextAlignment="Center"/>
+                    </RelativePanel>
+
                 </DataTemplate>
             </GridView.ItemTemplate>
         </GridView>
+        <Button Content="ADD" Click="{x:Bind FieldModel.Add }" Margin="2,10,0,598"  />
+        <Button Content="DELETE" Click="{x:Bind FieldModel.Delete }" Margin="58,10,0,598"/>
+        <Button Content="SHOW" Click="{x:Bind FieldModel.Show }" Margin="131,10,0,598"/>
     </Grid>
 </Page>

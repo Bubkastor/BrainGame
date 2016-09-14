@@ -15,7 +15,7 @@ namespace BrainGame
             this.InitializeComponent();
             FieldModel = new FieldViewModel("asd");
             rule = new RuleAddition(ref FieldModel);
-            
+            rule.RunGame();            
         }
 
         private void TextBlock_Tapped(object sender, Windows.UI.Xaml.Input.TappedRoutedEventArgs e)

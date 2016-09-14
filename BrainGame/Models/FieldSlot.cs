@@ -13,7 +13,7 @@ namespace Models
         public bool Visible { get; set; } = true;
         public bool IsSelected { get; set; } = false;
         public Slot() { }
-        public Slot(int value, bool visible)
+        public Slot(int value, bool visible = true) 
         {            
             Value = value;
             Visible = visible;
@@ -27,12 +27,10 @@ namespace Models
         {
             this.Name = Name;
             this.Numbers = new List<Slot>();
-            var rand = new Random();
-            bool visible = false;
+            var rand = new Random();            
             for (int i = 0; i < 25; i++)
             {               
-                this.Numbers.Add(new Slot(rand.Next(1, 9), visible));
-                visible = !visible;
+                this.Numbers.Add(new Slot(rand.Next(1, 9)));
             }           
         }
         public void Add(Slot slot)

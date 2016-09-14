@@ -12,7 +12,7 @@ namespace ViewModels
     public class FieldViewModel : NotificationBase
     {
         FieldSlot fieldSlot;
-        public FieldViewModel(String name)//, List<Slot> Number)
+        public FieldViewModel(String name)
         {
             fieldSlot = new FieldSlot(name);
             foreach (var it in fieldSlot.Numbers)
@@ -75,6 +75,16 @@ namespace ViewModels
             get { return (_SelectedIndex >= 0) ? _Slot[_SelectedIndex] : null; }
         }
 
+        public List<SlotViewModel> VisibleSlot
+        {
+            get {
+                List<SlotViewModel> list = new List<SlotViewModel>();
+                foreach(var item in Slot)                
+                    if (item.Visible)
+                        list.Add(item);
+                return list;
+                }
+        }
         void Slot_OnNotifyPropertyChanged(Object sender, PropertyChangedEventArgs e)
         {
             //fieldSlot.Update((SlotViewModel)sender);

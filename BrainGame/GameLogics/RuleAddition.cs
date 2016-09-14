@@ -9,11 +9,16 @@ using ViewModels;
 
 namespace GameLogics
 {
-    public class RuleAddition
+    public class RuleAddition: NotificationBase
     {
         private List<SlotViewModel> usedSlot;
         private FieldViewModel fieldModel;
-        private int Answer;
+        private int answer;
+        public int Answer
+        {
+            get { return this.answer; }
+            set { this.SetProperty(ref this.answer, value); }
+        }
 
         public RuleAddition(ref FieldViewModel fieldModel)
         {
@@ -23,7 +28,29 @@ namespace GameLogics
 
         public void RunGame()
         {
-            
+            Answer = GetRandomAnswer();
+        }
+
+        private int GetRandomAnswer()
+        {
+            int result = 0;
+            var rand = new Random();
+            var count = fieldModel.VisibleSlot.Count;
+            var rand1 = rand.Next(0, count);
+            var rand2 = rand.Next(0, count);        
+            while (rand1 == rand2)
+                rand2 = rand.Next(0, count);
+            if (count <= 2)
+            {
+                for(var i = 0; i < count;i++)
+                result += fieldModel.VisibleSlot[i].Value;
+            }
+            else
+            {
+                result = fieldModel.VisibleSlot[rand1].Value + fieldModel.VisibleSlot[rand2].Value;        
+            }
+
+            return result;
         }
 
         void CheckedRule()
@@ -33,9 +60,18 @@ namespace GameLogics
                 return sum;
             });
             Debug.WriteLine("Sum == " + summ );
-            if(summ == 10)
+            if(summ == Answer)
             {
+                Answer = GetRandomAnswer();
                 DisableSlot();
+                if (fieldModel.VisibleSlot.Count != 0)
+                {
+                    Answer = GetRandomAnswer();
+                }
+                else
+                {
+                    Answer = 999;
+                }
             }
         }
 
@@ -69,9 +105,6 @@ namespace GameLogics
             }
 
         }
-
-
-
 
     }
 }

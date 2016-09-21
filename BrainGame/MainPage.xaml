@@ -1,0 +1,30 @@
+﻿<Page
+    x:Class="BrainGame.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:BrainGame"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid  Background="Black">
+        <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+                <TextBlock Text="BrainGame" Margin="0,20" HorizontalAlignment="Center" FontSize="30" FocusVisualPrimaryBrush="White" Foreground="White" FocusVisualSecondaryBrush="#991B0B0B"/>
+                <Image Source="Assets/Brain.jpg" NineGrid="0"/>
+                <TextBlock Text="Accelerate you Brain" Margin="0,20" HorizontalAlignment="Center" Foreground="White" FocusVisualPrimaryBrush="White" FocusVisualSecondaryBrush="#991B0B0B"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" FocusVisualPrimaryBrush="#FF06B816" FocusVisualSecondaryBrush="#FF4706F3">
+                <Button Content="Game" Foreground="White" BorderBrush="#FFFF0303" BorderThickness="2" RenderTransformOrigin="1,0" ClickMode="Release" Background="#FF460B0B" >
+                    <Button.RenderTransform>
+                        <CompositeTransform Rotation="0" TranslateX="0"/>
+                    </Button.RenderTransform>
+                    <Button.Projection>
+                        <PlaneProjection CenterOfRotationX="0" CenterOfRotationZ="0" CenterOfRotationY="0" RotationX="0" GlobalOffsetX="0"/>
+                    </Button.Projection>
+                </Button>
+                <Button Content="Option" Background="#FF460B0B" BorderBrush="#FFFF0303" FocusVisualPrimaryBrush="#FFFDDF7B" Foreground="White" FocusVisualSecondaryBrush="#FF8BFB57"/>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Page>

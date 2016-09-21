@@ -59,7 +59,6 @@ namespace GameLogics
                 sum += value.Value;
                 return sum;
             });
-            Debug.WriteLine("Sum == " + summ );
             if(summ == Answer)
             {
                 Answer = GetRandomAnswer();
@@ -81,7 +80,6 @@ namespace GameLogics
             {
                 item.Visible = !item.Visible;
             }
-            //usedSlot.All(item => item.Visible = false);
             usedSlot.RemoveRange(0, usedSlot.Count); 
         }
 

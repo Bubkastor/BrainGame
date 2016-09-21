@@ -3,6 +3,10 @@ using ViewModels;
 using Windows.UI.Xaml.Media;
 using Windows.UI;
 using GameLogics;
+using Windows.UI.Xaml.Hosting;
+using Windows.UI.Composition;
+using Microsoft.Graphics.Canvas.Effects;
+
 namespace BrainGame
 {
     
@@ -10,12 +14,13 @@ namespace BrainGame
     {
         public FieldViewModel FieldModel;
         private RuleAddition rule;
+
         public FieldPage()
         {
             this.InitializeComponent();
             FieldModel = new FieldViewModel("asd");
             rule = new RuleAddition(ref FieldModel);
-            rule.RunGame();            
+            rule.RunGame();
         }
 
         private void TextBlock_Tapped(object sender, Windows.UI.Xaml.Input.TappedRoutedEventArgs e)

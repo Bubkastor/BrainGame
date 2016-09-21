@@ -15,7 +15,7 @@
                 <TextBlock Text="Accelerate you Brain" Margin="0,20" HorizontalAlignment="Center" Foreground="White" FocusVisualPrimaryBrush="White" FocusVisualSecondaryBrush="#991B0B0B"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" FocusVisualPrimaryBrush="#FF06B816" FocusVisualSecondaryBrush="#FF4706F3">
-                <Button Content="Game" Foreground="White" BorderBrush="#FFFF0303" BorderThickness="2" RenderTransformOrigin="1,0" ClickMode="Release" Background="#FF460B0B" >
+                <Button Content="Game" Foreground="White" BorderBrush="#FFFF0303" BorderThickness="2" RenderTransformOrigin="1,0" ClickMode="Release" Background="#FF460B0B" Click="Button_Click" >
                     <Button.RenderTransform>
                         <CompositeTransform Rotation="0" TranslateX="0"/>
                     </Button.RenderTransform>

@@ -13,7 +13,7 @@ namespace BrainGame
     public sealed partial class FieldPage : Page
     {
         public FieldViewModel FieldModel;
-        private RuleAddition rule;
+        private BaseRule rule;
 
         public FieldPage()
         {

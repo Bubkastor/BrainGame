@@ -9,100 +9,40 @@ using ViewModels;
 
 namespace GameLogics
 {
-    public class RuleAddition: NotificationBase
+    public class RuleAddition:  BaseRule 
     {
-        private List<SlotViewModel> usedSlot;
-        private FieldViewModel fieldModel;
-        private int answer;
-        public int Answer
+
+        private int FuncAggregate(int sum, SlotViewModel slot)
         {
-            get { return this.answer; }
-            set { this.SetProperty(ref this.answer, value); }
+            sum += slot.Value;
+            return sum;
         }
 
-        public RuleAddition(ref FieldViewModel fieldModel)
+        public RuleAddition(ref FieldViewModel fieldModel) : base(ref fieldModel)
         {
-            this.fieldModel = fieldModel;
-            usedSlot = new List<SlotViewModel>();
+            funcAggregate = FuncAggregate;
         }
 
-        public void RunGame()
-        {
-            Answer = GetRandomAnswer();
-        }
-
-        private int GetRandomAnswer()
+        override protected int GetRandomAnswer()
         {
             int result = 0;
             var rand = new Random();
             var count = fieldModel.VisibleSlot.Count;
             var rand1 = rand.Next(0, count);
-            var rand2 = rand.Next(0, count);        
+            var rand2 = rand.Next(0, count);
             while (rand1 == rand2)
                 rand2 = rand.Next(0, count);
             if (count <= 2)
             {
-                for(var i = 0; i < count;i++)
-                result += fieldModel.VisibleSlot[i].Value;
+                for (var i = 0; i < count; i++)
+                    result += fieldModel.VisibleSlot[i].Value;
             }
             else
             {
-                result = fieldModel.VisibleSlot[rand1].Value + fieldModel.VisibleSlot[rand2].Value;        
+                result = fieldModel.VisibleSlot[rand1].Value + fieldModel.VisibleSlot[rand2].Value;
             }
 
             return result;
         }
-
-        void CheckedRule()
-        {
-            var summ = usedSlot.Aggregate(0, (sum, value) => {
-                sum += value.Value;
-                return sum;
-            });
-            if(summ == Answer)
-            {
-                Answer = GetRandomAnswer();
-                DisableSlot();
-                if (fieldModel.VisibleSlot.Count != 0)
-                {
-                    Answer = GetRandomAnswer();
-                }
-                else
-                {
-                    Answer = 999;
-                }
-            }
-        }
-
-        public void DisableSlot()
-        {
-            foreach (var item in usedSlot)
-            {
-                item.Visible = !item.Visible;
-            }
-            usedSlot.RemoveRange(0, usedSlot.Count); 
-        }
-
-        public void AddSlot(ref SlotViewModel slot)
-        {
-            if (!usedSlot.Contains(slot))
-            {
-                usedSlot.Add(slot);
-                slot.IsSelected = !slot.IsSelected;
-                CheckedRule();
-            }
-        }
-
-        public void DeleteSlot(ref SlotViewModel slot)
-        {
-            if (usedSlot.Contains(slot))
-            {
-                slot.IsSelected = !slot.IsSelected;
-                usedSlot.Remove(slot);
-                CheckedRule();
-            }
-
-        }
-
     }
 }

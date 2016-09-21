@@ -102,6 +102,7 @@
     <Compile Include="FieldPage.xaml.cs">
       <DependentUpon>FieldPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="GameLogics\BaseRule.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>

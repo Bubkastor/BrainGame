@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ViewModels;
-
+using System.Diagnostics;
 namespace GameLogics
 {
     public class BaseRule: NotificationBase
@@ -14,10 +14,16 @@ namespace GameLogics
         protected int answer;
         protected Func<int, SlotViewModel, int> funcAggregate;
 
+        public delegate void SampleEventHandler(object sender, EventArgs e);
+        
+        
+        public event EventHandler eventHandler;
+
+
         public BaseRule(ref FieldViewModel fieldModel)
         {
             this.fieldModel = fieldModel;
-            usedSlot = new List<SlotViewModel>();
+            usedSlot = new List<SlotViewModel>();            
         }
 
         public int Answer
@@ -34,6 +40,7 @@ namespace GameLogics
         void CheckedRule()
         {
             var summ = usedSlot.Aggregate(0, funcAggregate);
+            Debug.WriteLine("Answer: " + summ);
             if (summ == Answer)
             {
                 Answer = GetRandomAnswer();
@@ -44,7 +51,9 @@ namespace GameLogics
                 }
                 else
                 {
-                    Answer = 999;
+                    eventHandler?.Invoke(this,null);
+                    Answer = 0;
+
                 }
             }
         }

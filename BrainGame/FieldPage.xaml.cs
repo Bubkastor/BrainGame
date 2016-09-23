@@ -6,6 +6,7 @@ using GameLogics;
 using Windows.UI.Xaml.Hosting;
 using Windows.UI.Composition;
 using Microsoft.Graphics.Canvas.Effects;
+using System;
 
 namespace BrainGame
 {
@@ -19,9 +20,19 @@ namespace BrainGame
         {
             this.InitializeComponent();
             FieldModel = new FieldViewModel("asd");
-            rule = new RuleAddition(ref FieldModel);
+            //rule = new RuleAddition(ref FieldModel);
+            rule = new RuleMultiplication(ref FieldModel);
+            rule.eventHandler += EndGame;
             rule.RunGame();
         }
+
+
+
+        private void EndGame(object sender, EventArgs e)
+        {
+            Description.Text = "Game Over";            
+        }
+       
 
         private void TextBlock_Tapped(object sender, Windows.UI.Xaml.Input.TappedRoutedEventArgs e)
         {

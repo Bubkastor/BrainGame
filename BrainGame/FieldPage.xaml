@@ -15,7 +15,7 @@
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" VerticalAlignment="Center" HorizontalAlignment="Center">
         <StackPanel Orientation="Vertical"  >
             <StackPanel Orientation="Horizontal" Width="100" Height="50" >
-                <TextBlock Text=".. + ... = "  Width="50" Height="50" />
+                <TextBlock x:Name="Description" Text=".. + ... = "  Width="50" Height="50" />
                 <TextBlock x:Name="Answer" Text="{x:Bind rule.Answer, Mode=TwoWay}"  Width="50" Height="50"/>
 
             </StackPanel>

@@ -25,11 +25,23 @@ namespace BrainGame
         public MainPage()
         {
             this.InitializeComponent();
+            
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        
+        private void ShowGameMode(object sender, RoutedEventArgs e)
+        {
+            OpenGameMode.Begin();
+        }
+
+        private void GameMultip(object sender, TappedRoutedEventArgs e)
         {
             Frame.Navigate(typeof(FieldPage));
+        }
+
+        private void GamePlus(object sender, TappedRoutedEventArgs e)
+        {
+            CloseGameMode.Begin();            
         }
     }
 }

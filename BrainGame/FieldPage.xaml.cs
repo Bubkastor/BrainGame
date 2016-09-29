@@ -7,6 +7,8 @@ using Windows.UI.Xaml.Hosting;
 using Windows.UI.Composition;
 using Microsoft.Graphics.Canvas.Effects;
 using System;
+using Windows.UI.Core;
+using System.Threading.Tasks;
 
 namespace BrainGame
 {
@@ -22,15 +24,26 @@ namespace BrainGame
             FieldModel = new FieldViewModel("asd");
             //rule = new RuleAddition(ref FieldModel);
             rule = new RuleMultiplication(ref FieldModel);
-            rule.eventHandler += EndGame;
+            rule.onEndGame += EndGame;
+            rule.SetOnUpdateInterface(Update);
             rule.RunGame();
         }
 
-
-
-        private void EndGame(object sender, EventArgs e)
+        private async void  Update(TimeSpan ts)
         {
-            Description.Text = "Game Over";            
+            await Dispatcher.TryRunAsync(CoreDispatcherPriority.High,  () => {
+                timer.Text = ts.Minutes.ToString() + ":" + ts.Seconds.ToString();
+            });
+        }
+
+        private async void EndGame(object sender, EventArgs e)
+        {
+            await Dispatcher.TryRunAsync(CoreDispatcherPriority.High, () => {
+                var arg = (EndEventArgs)e;
+                
+                Description.Text = arg.IsWin.ToString();
+            });
+            
         }
        
 

@@ -21,10 +21,12 @@ namespace GameLogics
         protected List<SlotViewModel> usedSlot;
         protected FieldViewModel fieldModel;
         protected int answer;
+        protected int countNuber = 2;
         protected Func<int, SlotViewModel, int> funcAggregate;
+        protected Func<int, int, int> funcAggregateAnswer;
 
-        protected TimeSpan delay;
-        protected ThreadPoolTimer DelayTimer;
+        private TimeSpan delay;
+        private ThreadPoolTimer DelayTimer;
 
         private TimeSpan tick = TimeSpan.FromSeconds(1);
         private TimeSpan addTick = TimeSpan.FromSeconds(5);
@@ -32,9 +34,9 @@ namespace GameLogics
         public event EventHandler onEndGame;
 
         public delegate void OnUpdateInterface(TimeSpan time);
-        public OnUpdateInterface Update;
+        private OnUpdateInterface Update;
 
-        protected virtual void OnEndGame(TimeSpan time, bool isWin)
+        private void OnEndGame(TimeSpan time, bool isWin)
         {
             onEndGame?.Invoke(this, new EndEventArgs(time, isWin));
         }
@@ -69,8 +71,7 @@ namespace GameLogics
                     if (delay < tick)
                     {
                         DelayTimer.Cancel();
-                        OnEndGame(delay, false);
-                        
+                        OnEndGame(delay, false);                        
                     }
                     else
                     {
@@ -81,10 +82,10 @@ namespace GameLogics
                 }, tick);
         }
 
-        void CheckedRule()
+        private void CheckedRule()
         {
             var summ = usedSlot.Aggregate(0, funcAggregate);
-            Debug.WriteLine("Answer: " + summ);
+            Debug.WriteLine("Summ: " + summ);
             if (summ == Answer)
             {
                 Answer = GetRandomAnswer();
@@ -104,9 +105,42 @@ namespace GameLogics
             }
         }
 
-        protected virtual int GetRandomAnswer()
+        private List<int> RandomNumber(int count)
         {
-            throw new NotImplementedException();
+            List<int> result = new List<int>();
+            var rand = new Random();
+            var countSlot = fieldModel.VisibleSlot.Count;
+            while (result.Count != count)
+            {
+                var randNumber = rand.Next(1, countSlot);
+                if (!result.Contains(randNumber))
+                    result.Add(randNumber);
+            }
+            
+            
+            return result;
+        }
+
+        private int GetRandomAnswer()
+        {
+            int result = 0;
+            
+            var count = fieldModel.VisibleSlot.Count;
+            List<int> usedNumber = new List<int>();
+
+            if (count <= countNuber)
+            {                
+                for (var i = 0; i < count; i++)
+                    usedNumber.Add(fieldModel.VisibleSlot[i].Value);                                
+            }
+            else
+            {
+                var randNumber = RandomNumber(countNuber);
+                foreach (var item in randNumber)
+                    usedNumber.Add(fieldModel.VisibleSlot[item].Value);
+            }
+            result = usedNumber.Aggregate(0, funcAggregateAnswer);
+            return result;
         }
 
         public void DisableSlot()

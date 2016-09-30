@@ -28,7 +28,7 @@ namespace Models
             this.Name = Name;
             this.Numbers = new List<Slot>();
             var rand = new Random();            
-            for (int i = 0; i < 25; i++)
+            for (int i = 0; i < 49; i++)
             {               
                 this.Numbers.Add(new Slot(rand.Next(1, 9)));
             }           

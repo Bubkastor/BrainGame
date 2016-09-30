@@ -18,6 +18,7 @@ namespace GameLogics
 
     public class BaseRule : NotificationBase
     {
+        public String Description;
         protected List<SlotViewModel> usedSlot;
         protected FieldViewModel fieldModel;
         protected int answer;

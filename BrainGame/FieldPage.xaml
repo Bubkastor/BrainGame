@@ -21,18 +21,20 @@
                 <TextBlock x:Name="Answer" Text="{x:Bind rule.Answer, Mode=TwoWay}"  Width="50" Height="50"/>
 
             </StackPanel>
-            <GridView x:Name="MainBox" ItemsSource="{x:Bind FieldModel.Slot, Mode=OneWay}" SelectedIndex="{x:Bind FieldModel.SelectedIndex, Mode=TwoWay}"
-                  Width="250px" Height="250px" SelectionMode="Single" Padding="0" IsDoubleTapEnabled="False" IsHoldingEnabled="False" IsRightTapEnabled="False" AllowFocusOnInteraction="False" Grid.RowSpan="4" >
-                <GridView.ItemTemplate>
-                    <DataTemplate >
-                        <RelativePanel  Visibility="{Binding Visible}" Tapped="TextBlock_Tapped" Background="{Binding IsSelected, Converter={StaticResource ObjectIsSelected}, Mode=TwoWay}" Width="45" Height="45" HorizontalAlignment="Center" VerticalAlignment="Center" >
-                            <TextBlock  Text="{Binding Value, Mode=OneWay}"                                
-                                 Margin="0" HorizontalAlignment="Center" VerticalAlignment="Center" TextReadingOrder="UseFlowDirection" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignVerticalCenterWithPanel="True" LineHeight="10" TextAlignment="Center"/>
-                        </RelativePanel>
+            <Border CornerRadius="15" BorderThickness="1" Padding="10,10,0,0" Background="#FFD3BFB4" Height="360" Width="360">
+                <GridView x:Name="MainBox" ItemsSource="{x:Bind FieldModel.Slot, Mode=OneWay}" SelectedIndex="{x:Bind FieldModel.SelectedIndex, Mode=TwoWay}"
+                  Width="350" Height="350" SelectionMode="Single" Padding="0" IsDoubleTapEnabled="False" IsHoldingEnabled="False" IsRightTapEnabled="False" AllowFocusOnInteraction="False" Grid.RowSpan="4" Margin="0" >
+                    <GridView.ItemTemplate>
+                        <DataTemplate >
+                            <Border  CornerRadius="5"   Visibility="{Binding Visible}" Tapped="TextBlock_Tapped" Background="{Binding IsSelected, Converter={StaticResource ObjectIsSelected}, Mode=TwoWay}" Width="45" Height="45" HorizontalAlignment="Center" VerticalAlignment="Center" FocusVisualPrimaryBrush="#00000000" FocusVisualSecondaryBrush="#00000000" >
+                                <TextBlock  Text="{Binding Value, Mode=OneWay}"                                
+                                     Margin="0" HorizontalAlignment="Center" VerticalAlignment="Center" TextReadingOrder="UseFlowDirection"  LineHeight="10" TextAlignment="Center" SelectionHighlightColor="{x:Null}"/>
+                            </Border>
 
-                    </DataTemplate>
-                </GridView.ItemTemplate>
-            </GridView>
+                        </DataTemplate>
+                    </GridView.ItemTemplate>
+                </GridView>
+            </Border>
         </StackPanel>
     </Grid>
 </Page>

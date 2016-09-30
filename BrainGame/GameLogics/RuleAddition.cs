@@ -27,6 +27,7 @@ namespace GameLogics
         {
             funcAggregate = FuncAggregate;
             funcAggregateAnswer = FuncAggregateAnswer;
+            Description = "..+..=";
         }
 
     }

@@ -9,6 +9,8 @@ using Microsoft.Graphics.Canvas.Effects;
 using System;
 using Windows.UI.Core;
 using System.Threading.Tasks;
+using Windows.UI.Xaml.Navigation;
+using System.Diagnostics;
 
 namespace BrainGame
 {
@@ -21,12 +23,32 @@ namespace BrainGame
         public FieldPage()
         {
             this.InitializeComponent();
-            FieldModel = new FieldViewModel("asd");
-            //rule = new RuleAddition(ref FieldModel);
-            rule = new RuleMultiplication(ref FieldModel);
+            FieldModel = new FieldViewModel("asd");                                                
+        }
+
+        private void InitGameAndRun()
+        {
             rule.onEndGame += EndGame;
             rule.SetOnUpdateInterface(Update);
             rule.RunGame();
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            var param = e.Parameter as string;
+            switch (param)
+            {
+                case "RuleAddition":
+                    rule = new RuleAddition(ref FieldModel);
+                    break;
+                case "RuleMultiplication":
+                    rule = new RuleMultiplication(ref FieldModel);
+                    break;
+                default:
+                    break;
+            }
+            Description.Text = rule.Description;
+            InitGameAndRun();
         }
 
         private async void  Update(TimeSpan ts)
@@ -40,8 +62,8 @@ namespace BrainGame
         {
             await Dispatcher.TryRunAsync(CoreDispatcherPriority.High, () => {
                 var arg = (EndEventArgs)e;
-                
-                Description.Text = arg.IsWin.ToString();
+                Frame.Navigate(typeof(GameOverPage), arg);
+
             });
             
         }

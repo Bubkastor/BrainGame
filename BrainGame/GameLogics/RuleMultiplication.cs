@@ -13,6 +13,7 @@ namespace GameLogics
         {
             funcAggregate = FuncAggregate;
             funcAggregateAnswer = FuncAggregateAnswer;
+            Description = "1 *..*..=";
         }
 
         private int FuncAggregate(int sum, SlotViewModel slot)

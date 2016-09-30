@@ -109,6 +109,9 @@
     <Compile Include="GameLogics\RuleDivision.cs" />
     <Compile Include="GameLogics\RuleMultiplication.cs" />
     <Compile Include="GameLogics\RuleSubtraction.cs" />
+    <Compile Include="GameOverPage.xaml.cs">
+      <DependentUpon>GameOverPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -148,6 +151,10 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="FieldPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GameOverPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

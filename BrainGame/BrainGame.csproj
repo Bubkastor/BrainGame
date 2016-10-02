@@ -131,9 +131,12 @@
   <ItemGroup>
     <Content Include="Assets\Brain.jpg" />
     <Content Include="Assets\multip.png" />
+    <Content Include="Assets\option.svg" />
     <Content Include="Assets\options.png" />
     <Content Include="Assets\play.png" />
+    <Content Include="Assets\play.svg" />
     <Content Include="Assets\plus.png" />
+    <Content Include="Assets\plus.svg" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />

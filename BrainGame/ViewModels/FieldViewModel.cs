@@ -12,19 +12,15 @@ namespace ViewModels
     public class FieldViewModel : NotificationBase
     {
         FieldSlot fieldSlot;
-        public FieldViewModel(String name)
+        public FieldViewModel()
         {
-            fieldSlot = new FieldSlot(name);
+            fieldSlot = new FieldSlot();
             foreach (var it in fieldSlot.Numbers)
             {
                 var np = new SlotViewModel(it);
                 np.PropertyChanged += Slot_OnNotifyPropertyChanged;
                 _Slot.Add(np);
             }
-        }
-        public string Name
-        {
-            get { return fieldSlot.Name; }
         }
 
         private ObservableCollection<SlotViewModel> _Slot = new ObservableCollection<SlotViewModel>();

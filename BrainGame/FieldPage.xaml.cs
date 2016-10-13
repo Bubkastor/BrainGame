@@ -13,8 +13,7 @@ using Windows.UI.Xaml.Navigation;
 using System.Diagnostics;
 
 namespace BrainGame
-{
-    
+{    
     public sealed partial class FieldPage : Page
     {
         public FieldViewModel FieldModel;
@@ -23,7 +22,7 @@ namespace BrainGame
         public FieldPage()
         {
             this.InitializeComponent();
-            FieldModel = new FieldViewModel("asd");                                                
+            FieldModel = new FieldViewModel();                                                
         }
 
         private void InitGameAndRun()
@@ -54,7 +53,7 @@ namespace BrainGame
         private async void  Update(TimeSpan ts)
         {
             await Dispatcher.TryRunAsync(CoreDispatcherPriority.High,  () => {
-                timer.Text = ts.Minutes.ToString() + ":" + ts.Seconds.ToString();
+                timer.Text =ts.ToString("mm\\:ss");
             });
         }
 

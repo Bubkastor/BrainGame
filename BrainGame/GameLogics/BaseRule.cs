@@ -22,7 +22,7 @@ namespace GameLogics
         protected List<SlotViewModel> usedSlot;
         protected FieldViewModel fieldModel;
         protected int answer;
-        protected int countNuber = 2;
+        protected int countNumber = 2;
         protected Func<int, SlotViewModel, int> funcAggregate;
         protected Func<int, int, int> funcAggregateAnswer;
 
@@ -53,8 +53,6 @@ namespace GameLogics
             Update = onUpdate;
         }
 
-
-
         public int Answer
         {
             get { return this.answer; }
@@ -68,7 +66,6 @@ namespace GameLogics
             DelayTimer = ThreadPoolTimer.CreatePeriodicTimer(
                 (source) =>
                 {
-
                     if (delay < tick)
                     {
                         DelayTimer.Cancel();
@@ -86,7 +83,6 @@ namespace GameLogics
         private void CheckedRule()
         {
             var summ = usedSlot.Aggregate(0, funcAggregate);
-            Debug.WriteLine("Summ: " + summ);
             if (summ == Answer)
             {
                 Answer = GetRandomAnswer();
@@ -116,9 +112,7 @@ namespace GameLogics
                 var randNumber = rand.Next(1, countSlot);
                 if (!result.Contains(randNumber))
                     result.Add(randNumber);
-            }
-            
-            
+            }                        
             return result;
         }
 
@@ -129,14 +123,14 @@ namespace GameLogics
             var count = fieldModel.VisibleSlot.Count;
             List<int> usedNumber = new List<int>();
 
-            if (count <= countNuber)
+            if (count <= countNumber)
             {                
                 for (var i = 0; i < count; i++)
                     usedNumber.Add(fieldModel.VisibleSlot[i].Value);                                
             }
             else
             {
-                var randNumber = RandomNumber(countNuber);
+                var randNumber = RandomNumber(countNumber);
                 foreach (var item in randNumber)
                     usedNumber.Add(fieldModel.VisibleSlot[item].Value);
             }

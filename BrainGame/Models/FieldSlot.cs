@@ -22,10 +22,8 @@ namespace Models
     public class FieldSlot
     {
         public List<Slot> Numbers { get; set; }      
-        public String Name { get; set; }  
-        public FieldSlot(String Name)
+        public FieldSlot()
         {
-            this.Name = Name;
             this.Numbers = new List<Slot>();
             var rand = new Random();            
             for (int i = 0; i < 49; i++)

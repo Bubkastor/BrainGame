@@ -9,7 +9,7 @@ namespace GameLogics
 {
     public class RuleMultiplication : BaseRule
     {
-        public RuleMultiplication(ref FieldViewModel fieldModel) : base(ref fieldModel)
+        public RuleMultiplication(ref FieldViewModel fieldModel,String gameMode) : base(ref fieldModel, gameMode)
         {
             funcAggregate = FuncAggregate;
             funcAggregateAnswer = FuncAggregateAnswer;

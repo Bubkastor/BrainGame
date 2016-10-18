@@ -9,7 +9,7 @@ namespace GameLogics
 {
     public class RuleSubtraction : BaseRule
     {
-        public RuleSubtraction(ref FieldViewModel fieldModel) : base(ref fieldModel)
+        public RuleSubtraction(ref FieldViewModel fieldModel, String gameMode) : base(ref fieldModel, gameMode)
         {
         }
     }

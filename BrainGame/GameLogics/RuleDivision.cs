@@ -9,7 +9,7 @@ namespace GameLogics
 {
     public class RuleDivision : BaseRule
     {
-        public RuleDivision(ref FieldViewModel fieldModel) : base(ref fieldModel)
+        public RuleDivision(ref FieldViewModel fieldModel, String gameMode) : base(ref fieldModel, gameMode)
         {
         }
     }

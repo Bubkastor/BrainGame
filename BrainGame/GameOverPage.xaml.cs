@@ -19,6 +19,7 @@ namespace BrainGame
 
     public sealed partial class GameOverPage : Page
     {
+        private String gameMode;
         public GameOverPage()
         {
             this.InitializeComponent();
@@ -29,6 +30,17 @@ namespace BrainGame
             var param = e.Parameter as EndEventArgs;
             title.Text = param.IsWin ? "You Win" : "You Lose";
             score.Text = "Score: " + (param.Time.TotalSeconds * 10).ToString();
+            gameMode = param.GameMode;
+        }
+
+        private void Button_Click_New_Game(Object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(FieldPage), gameMode);
+        }
+
+        private void Button_Click_Main_Menu(Object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(MainPage), "RuleMultiplication");
         }
     }
 }

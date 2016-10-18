@@ -9,11 +9,16 @@ using Windows.System.Threading;
 
 namespace GameLogics
 {
-    public class EndEventArgs: EventArgs
+    public class EndEventArgs : EventArgs
     {
-        public EndEventArgs(TimeSpan time, bool isWin) { Time = time; IsWin = isWin; }
+        public EndEventArgs(TimeSpan time, bool isWin, String gameMode) {
+            Time = time;
+            IsWin = isWin;
+            GameMode = gameMode;
+        }
         public TimeSpan Time { get; private set; } // readonly
         public bool IsWin { get; private set; } // readonly
+        public String GameMode { get; set; }
     }
 
     public class BaseRule : NotificationBase
@@ -33,20 +38,23 @@ namespace GameLogics
         private TimeSpan addTick = TimeSpan.FromSeconds(5);
 
         public event EventHandler onEndGame;
+        public String GameMode;
 
         public delegate void OnUpdateInterface(TimeSpan time);
         private OnUpdateInterface Update;
 
         private void OnEndGame(TimeSpan time, bool isWin)
         {
-            onEndGame?.Invoke(this, new EndEventArgs(time, isWin));
+            onEndGame?.Invoke(this, new EndEventArgs(time, isWin, GameMode));
         }
 
-        public BaseRule(ref FieldViewModel fieldModel)
+        public BaseRule(ref FieldViewModel fieldModel,String gameMode)
         {
+            this.GameMode = gameMode;
             this.fieldModel = fieldModel;
-            usedSlot = new List<SlotViewModel>();                     
+            usedSlot = new List<SlotViewModel>();
         }
+
 
         public void SetOnUpdateInterface(OnUpdateInterface onUpdate)
         {
@@ -69,12 +77,12 @@ namespace GameLogics
                     if (delay < tick)
                     {
                         DelayTimer.Cancel();
-                        OnEndGame(delay, false);                        
+                        OnEndGame(delay, false);
                     }
                     else
                     {
                         Update?.Invoke(delay);
-                        delay = delay.Subtract(tick);                        
+                        delay = delay.Subtract(tick);
                     }
 
                 }, tick);
@@ -112,21 +120,21 @@ namespace GameLogics
                 var randNumber = rand.Next(1, countSlot);
                 if (!result.Contains(randNumber))
                     result.Add(randNumber);
-            }                        
+            }
             return result;
         }
 
         private int GetRandomAnswer()
         {
             int result = 0;
-            
+
             var count = fieldModel.VisibleSlot.Count;
             List<int> usedNumber = new List<int>();
 
             if (count <= countNumber)
-            {                
+            {
                 for (var i = 0; i < count; i++)
-                    usedNumber.Add(fieldModel.VisibleSlot[i].Value);                                
+                    usedNumber.Add(fieldModel.VisibleSlot[i].Value);
             }
             else
             {

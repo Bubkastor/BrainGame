@@ -38,10 +38,10 @@ namespace BrainGame
             switch (param)
             {
                 case "RuleAddition":
-                    rule = new RuleAddition(ref FieldModel);
+                    rule = new RuleAddition(ref FieldModel, "RuleAddition");
                     break;
                 case "RuleMultiplication":
-                    rule = new RuleMultiplication(ref FieldModel);
+                    rule = new RuleMultiplication(ref FieldModel, "RuleMultiplication");
                     break;
                 default:
                     break;

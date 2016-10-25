@@ -8,9 +8,25 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Data
 {
+    public struct Difficult
+    {
+        public int Count { get; set; }
+        public int BeginRange { get; set; }
+        public int EndRange { get; set; }
+        public Difficult(int count, int beginRange, int endRange)
+        {
+            this.Count = count;
+            this.BeginRange = beginRange;
+            this.EndRange = endRange;
+        }
+
+    }
     public class BaseGame
     {
-        public int Score { get; set; }
+        public bool IsOpen { get; set; }
+        public short Raiting { get; set; }
+        public Difficult Diff { get; set; }
+
     }
     public class GameAddition : BaseGame
     {
@@ -31,6 +47,7 @@ namespace Data
         public DbSet<GameSubtraction> GamesSubtraction;
         public DbSet<GameMultiplication> GamesMultiplication;
         public DbSet<GameDivision> GamesDivision;
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlite("Filename=GameContext.db");

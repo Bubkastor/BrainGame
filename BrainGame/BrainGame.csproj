@@ -118,8 +118,10 @@
     <Compile Include="Models\FieldLevel.cs" />
     <Compile Include="Models\FieldSlot.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\FieldLevelViewModel.cs" />
     <Compile Include="ViewModels\FieldSlotViewModel.cs" />
     <Compile Include="GameLogics\RuleAddition.cs" />
+    <Compile Include="ViewModels\LevelViewModel.cs" />
     <Compile Include="ViewModels\SlotViewModel.cs" />
     <Compile Include="ViewModels\ViewModelHelpers.cs" />
   </ItemGroup>

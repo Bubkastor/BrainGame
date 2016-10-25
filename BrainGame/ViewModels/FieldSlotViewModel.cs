@@ -11,18 +11,17 @@ namespace ViewModels
 {
     public class FieldSlotViewModel : NotificationBase
     {
-        FieldSlot fieldSlot;
+        
         public FieldSlotViewModel()
         {
             int count = 49;
             int beginRange = 2;
             int endRange = 12;
-            fieldSlot = new FieldSlot(count, beginRange, endRange);
+            FieldSlot fieldSlot = new FieldSlot(count, beginRange, endRange);
             foreach (var it in fieldSlot.Numbers)
             {
                 var np = new SlotViewModel(it);
-                np.PropertyChanged += Slot_OnNotifyPropertyChanged;
-                _Slot.Add(np);
+                Add(np);
             }
         }
 
@@ -35,9 +34,9 @@ namespace ViewModels
         }
 
         private int _SelectedIndex;
-        public void Add()
+
+        public void Add(SlotViewModel slot)
         {
-            var slot = new SlotViewModel();
             slot.PropertyChanged += Slot_OnNotifyPropertyChanged;
             Slot.Add(slot);            
             SelectedIndex = Slot.IndexOf(slot);

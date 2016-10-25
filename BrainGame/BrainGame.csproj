@@ -133,6 +133,7 @@
     <Content Include="Assets\multip.png" />
     <Content Include="Assets\option.svg" />
     <Content Include="Assets\options.png" />
+    <Content Include="Assets\pause.png" />
     <Content Include="Assets\play.png" />
     <Content Include="Assets\play.svg" />
     <Content Include="Assets\plus.png" />

@@ -27,12 +27,13 @@ namespace GameLogics
         protected List<SlotViewModel> usedSlot;
         protected FieldViewModel fieldModel;
         protected int answer;
-        protected int countNumber = 2;
+        protected int countNumber = 2;        
         protected Func<int, SlotViewModel, int> funcAggregate;
         protected Func<int, int, int> funcAggregateAnswer;
 
         private TimeSpan delay;
         private ThreadPoolTimer DelayTimer;
+        public bool isPause { get; set; } = false;
 
         private TimeSpan tick = TimeSpan.FromSeconds(1);
         private TimeSpan addTick = TimeSpan.FromSeconds(5);
@@ -81,8 +82,11 @@ namespace GameLogics
                     }
                     else
                     {
-                        Update?.Invoke(delay);
-                        delay = delay.Subtract(tick);
+                        if (!isPause)
+                        {
+                            Update?.Invoke(delay);
+                            delay = delay.Subtract(tick);
+                        }                        
                     }
 
                 }, tick);

@@ -11,6 +11,7 @@ using Windows.UI.Core;
 using System.Threading.Tasks;
 using Windows.UI.Xaml.Navigation;
 using System.Diagnostics;
+    
 
 namespace BrainGame
 {    
@@ -53,7 +54,7 @@ namespace BrainGame
         private async void  Update(TimeSpan ts)
         {
             await Dispatcher.TryRunAsync(CoreDispatcherPriority.High,  () => {
-                timer.Text =ts.ToString("mm\\:ss");
+                timer.Text = ts.ToString("mm\\:ss");
             });
         }
 
@@ -79,6 +80,20 @@ namespace BrainGame
             else
             {
                 rule.DeleteSlot(ref slot);
+            }
+        }
+
+        private void onPause(Object sender, Windows.UI.Xaml.Input.TappedRoutedEventArgs e)
+        {
+            if(pause.Visibility == Windows.UI.Xaml.Visibility.Visible)
+            {
+                pause.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
+                rule.isPause = false;
+            }
+            else
+            {
+                pause.Visibility = Windows.UI.Xaml.Visibility.Visible;
+                rule.isPause = true;
             }
         }
     }

@@ -7,34 +7,28 @@
     xmlns:converters="using:Converters"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d">
+    mc:Ignorable="d" ScrollViewer.VerticalScrollBarVisibility="Disabled">
     <Page.Resources>
         <converters:ObjectIsSelected x:Key="ObjectIsSelected" />
     </Page.Resources>
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" VerticalAlignment="Center" HorizontalAlignment="Center">
-        <StackPanel Orientation="Vertical"  >
-            <TextBlock x:Name="timer" TextWrapping="Wrap" Text="TextBlock" Height="50" Margin="0" HorizontalAlignment="Center"/>
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" ScrollViewer.VerticalScrollBarVisibility="Disabled" >
+        <StackPanel Orientation="Vertical"  VerticalAlignment="Center" HorizontalAlignment="Center" >
+            <TextBlock x:Name="timer" TextWrapping="Wrap" Text="TextBlock" Height="50" Margin="0" HorizontalAlignment="Center" ScrollViewer.VerticalScrollBarVisibility="Disabled"/>
 
-            <StackPanel Orientation="Horizontal" Width="100" Height="50" >
+            <StackPanel Orientation="Horizontal" Width="100" Height="50" ScrollViewer.VerticalScrollBarVisibility="Disabled" >
                 <TextBlock x:Name="Description" Text=".. + ... = "  Width="50" Height="50" />
                 <TextBlock x:Name="Answer" Text="{x:Bind rule.Answer, Mode=TwoWay}"  Width="50" Height="50"/>
 
             </StackPanel>
-            <Border CornerRadius="15" BorderThickness="1" Padding="10,10,0,0" Background="#FFD3BFB4" Height="360" Width="360">
-                <GridView x:Name="MainBox" ItemsSource="{x:Bind FieldModel.Slot, Mode=OneWay}" SelectedIndex="{x:Bind FieldModel.SelectedIndex, Mode=TwoWay}"
-                  Width="350" Height="350" SelectionMode="Single" Padding="0" IsDoubleTapEnabled="False" IsHoldingEnabled="False" IsRightTapEnabled="False" AllowFocusOnInteraction="False" Grid.RowSpan="4" Margin="0" >
-                    <GridView.ItemTemplate>
-                        <DataTemplate >
-                            <Border  CornerRadius="5"   Visibility="{Binding Visible}" Tapped="TextBlock_Tapped" Background="{Binding IsSelected, Converter={StaticResource ObjectIsSelected}, Mode=TwoWay}" Width="45" Height="45" HorizontalAlignment="Center" VerticalAlignment="Center" FocusVisualPrimaryBrush="#00000000" FocusVisualSecondaryBrush="#00000000" >
-                                <TextBlock  Text="{Binding Value, Mode=OneWay}"                                
-                                     Margin="0" HorizontalAlignment="Center" VerticalAlignment="Center" TextReadingOrder="UseFlowDirection"  LineHeight="10" TextAlignment="Center" SelectionHighlightColor="{x:Null}"/>
-                            </Border>
-
-                        </DataTemplate>
-                    </GridView.ItemTemplate>
-                </GridView>
+            <Border CornerRadius="15" BorderThickness="1" Padding="10,10,0,0" Background="#FFD3BFB4" Height="360" Width="360" ScrollViewer.VerticalScrollBarVisibility="Disabled">
+                <GridView x:Name="MainBox" SelectedIndex="{x:Bind FieldModel.SelectedIndex, Mode=TwoWay}"
+                  Width="350" Height="350" SelectionMode="Single" Padding="0" IsDoubleTapEnabled="False" IsHoldingEnabled="False" IsRightTapEnabled="False" AllowFocusOnInteraction="False" Grid.RowSpan="4" Margin="0" ScrollViewer.VerticalScrollBarVisibility="Disabled" ShowsScrollingPlaceholders="False" />
             </Border>
         </StackPanel>
+        <RelativePanel x:Name="pause" Margin="0" Background="#FF836F52" FocusVisualSecondaryBrush="#FFE09797" Visibility="Collapsed">
+            <TextBlock x:Name="textBlock" Height="19" TextWrapping="Wrap" Text="PAUSE" Width="62" Margin="0" RelativePanel.AlignVerticalCenterWithPanel="True" RelativePanel.AlignHorizontalCenterWithPanel="True"/>
+        </RelativePanel>
+        <Image x:Name="image" Height="50" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="50" Source="Assets/pause.png" Tapped="onPause"/>
     </Grid>
 </Page>

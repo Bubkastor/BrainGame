@@ -22,13 +22,13 @@ namespace Models
     public class FieldSlot
     {
         public List<Slot> Numbers { get; set; }      
-        public FieldSlot()
+        public FieldSlot(int count, int beginRange, int endRange)
         {
             this.Numbers = new List<Slot>();
             var rand = new Random();            
-            for (int i = 0; i < 49; i++)
+            for (int i = 0; i < count; i++)
             {               
-                this.Numbers.Add(new Slot(rand.Next(1, 9)));
+                this.Numbers.Add(new Slot(rand.Next(beginRange, endRange)));
             }           
         }
         public void Add(Slot slot)

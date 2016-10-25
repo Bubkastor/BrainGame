@@ -14,7 +14,10 @@ namespace ViewModels
         FieldSlot fieldSlot;
         public FieldViewModel()
         {
-            fieldSlot = new FieldSlot();
+            int count = 49;
+            int beginRange = 2;
+            int endRange = 12;
+            fieldSlot = new FieldSlot(count, beginRange, endRange);
             foreach (var it in fieldSlot.Numbers)
             {
                 var np = new SlotViewModel(it);

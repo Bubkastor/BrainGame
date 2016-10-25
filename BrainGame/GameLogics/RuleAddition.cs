@@ -23,7 +23,7 @@ namespace GameLogics
             return sum;
         }
 
-        public RuleAddition(ref FieldViewModel fieldModel, String gameMode) : base(ref fieldModel, gameMode)
+        public RuleAddition(ref FieldSlotViewModel fieldModel, String gameMode) : base(ref fieldModel, gameMode)
         {
             funcAggregate = FuncAggregate;
             funcAggregateAnswer = FuncAggregateAnswer;

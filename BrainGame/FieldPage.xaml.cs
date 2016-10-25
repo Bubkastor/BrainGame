@@ -17,13 +17,13 @@ namespace BrainGame
 {    
     public sealed partial class FieldPage : Page
     {
-        public FieldViewModel FieldModel;
+        public FieldSlotViewModel FieldModel;
         private BaseRule rule;
 
         public FieldPage()
         {
             this.InitializeComponent();
-            FieldModel = new FieldViewModel();                                                
+            FieldModel = new FieldSlotViewModel();                                                
         }
 
         private void InitGameAndRun()

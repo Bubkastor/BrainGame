@@ -9,10 +9,10 @@ using Models;
 
 namespace ViewModels
 {
-    public class FieldViewModel : NotificationBase
+    public class FieldSlotViewModel : NotificationBase
     {
         FieldSlot fieldSlot;
-        public FieldViewModel()
+        public FieldSlotViewModel()
         {
             int count = 49;
             int beginRange = 2;

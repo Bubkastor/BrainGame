@@ -25,7 +25,7 @@ namespace GameLogics
     {
         public String Description;
         protected List<SlotViewModel> usedSlot;
-        protected FieldViewModel fieldModel;
+        protected FieldSlotViewModel fieldModel;
         protected int answer;
         protected int countNumber = 2;        
         protected Func<int, SlotViewModel, int> funcAggregate;
@@ -49,7 +49,7 @@ namespace GameLogics
             onEndGame?.Invoke(this, new EndEventArgs(time, isWin, GameMode));
         }
 
-        public BaseRule(ref FieldViewModel fieldModel,String gameMode)
+        public BaseRule(ref FieldSlotViewModel fieldModel,String gameMode)
         {
             this.GameMode = gameMode;
             this.fieldModel = fieldModel;

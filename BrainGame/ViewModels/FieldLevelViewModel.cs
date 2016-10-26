@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.ComponentModel;
 using System.Collections.ObjectModel;
 using Models;
+using Data;
 
 
 namespace ViewModels
@@ -16,6 +17,11 @@ namespace ViewModels
         public FieldLevelViewModel()
         {
             //todo init
+            for (int i = 0; i < 9; i++)
+            {
+                var level = new Level(true, (short)i, new Difficult(1, 1, 10));
+                Add(new LevelViewModel(level));
+            }
         }
 
         private ObservableCollection<LevelViewModel> _Levels = new ObservableCollection<LevelViewModel>();

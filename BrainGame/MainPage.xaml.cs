@@ -16,6 +16,7 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using GameLogics;
 using Windows.Storage;
+using BrainGame.View;
 
 namespace BrainGame
 {
@@ -43,6 +44,11 @@ namespace BrainGame
         {
             Frame.Navigate(typeof(FieldPage), "RuleAddition");
             CloseGameMode.Begin();            
+        }
+
+        private void Image_Tapped(Object sender, TappedRoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(LevelPage));
         }
     }
 }

@@ -124,6 +124,9 @@
     <Compile Include="ViewModels\LevelViewModel.cs" />
     <Compile Include="ViewModels\SlotViewModel.cs" />
     <Compile Include="ViewModels\ViewModelHelpers.cs" />
+    <Compile Include="View\LevelPage.xaml.cs">
+      <DependentUpon>LevelPage.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -166,6 +169,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="MainPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\LevelPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

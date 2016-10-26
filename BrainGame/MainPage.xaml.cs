@@ -18,6 +18,7 @@ using GameLogics;
 using Windows.Storage;
 using BrainGame.View;
 using Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace BrainGame
 {
@@ -49,26 +50,28 @@ namespace BrainGame
 
         private void Image_Tapped(Object sender, TappedRoutedEventArgs e)
         {
+
             using (var db = new GameContext())
             {
-                db.GamesAddition.Add(new GameAddition(true, 0, new Difficult(1, 10)));
+
+              
                 db.SaveChanges();
             }
 
         }
-        private List<GameAddition> GetGameAddition()
+        private List<GameMultiplication> GamesMultiplication()
         {
-            List<GameAddition> result = new List<GameAddition>();
-            var dif = new Difficult(1, 10);
-            result.Add(new GameAddition(true, 0, new Difficult(1, 10)));
-            result.Add(new GameAddition(false, 0, new Difficult(2, 11)));
-            result.Add(new GameAddition(false, 0, new Difficult(3, 12)));
-            result.Add(new GameAddition(false, 0, new Difficult(4, 13)));
-            result.Add(new GameAddition(false, 0, new Difficult(5, 14)));
-            result.Add(new GameAddition(false, 0, new Difficult(6, 15)));
-            result.Add(new GameAddition(false, 0, new Difficult(7, 16)));
-            result.Add(new GameAddition(false, 0, new Difficult(8, 17)));
-            result.Add(new GameAddition(false, 0, new Difficult(9, 18)));
+            List<GameMultiplication> result = new List<GameMultiplication>();
+            result.Add(new GameMultiplication { IsOpen = true, Raiting = 0, BeginRange = 1, EndRange = 10 });
+            result.Add(new GameMultiplication { IsOpen = false, Raiting = 0, BeginRange = 2, EndRange = 11 });
+            result.Add(new GameMultiplication { IsOpen = false, Raiting = 0, BeginRange = 3, EndRange = 12 });
+            result.Add(new GameMultiplication { IsOpen = false, Raiting = 0, BeginRange = 4, EndRange = 13 });
+            result.Add(new GameMultiplication { IsOpen = false, Raiting = 0, BeginRange = 5, EndRange = 14 });
+            result.Add(new GameMultiplication { IsOpen = false, Raiting = 0, BeginRange = 6, EndRange = 15 });
+            result.Add(new GameMultiplication { IsOpen = false, Raiting = 0, BeginRange = 7, EndRange = 16 });
+            result.Add(new GameMultiplication { IsOpen = false, Raiting = 0, BeginRange = 8, EndRange = 17 });
+            result.Add(new GameMultiplication { IsOpen = false, Raiting = 0, BeginRange = 9, EndRange = 18 });
+            result.Add(new GameMultiplication { IsOpen = false, Raiting = 0, BeginRange = 10, EndRange = 19 });
             return result;
         }
     }

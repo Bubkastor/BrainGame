@@ -38,10 +38,10 @@ namespace BrainGame.View
                 switch (param)
                 {
                     case "RuleAddition":
-                        db.GamesAddition.ToList();
+                        //db.GamesAddition.ToList();
                         break;
                     case "RuleMultiplication":                        
-                        db.GamesMultiplication.ToList();
+                        //db.GamesMultiplication.ToList();
                         break;
                     default:
                         break;

@@ -8,62 +8,44 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Data
 {
-    public struct Difficult
+    public class Difficult
     {
-        public int Count { get; set; }
+        public int DifficultId { get; set; }
+        public int Count { get; set; } = 49;
         public int BeginRange { get; set; }
         public int EndRange { get; set; }
-        public Difficult(int beginRange, int endRange, int count = 49)
-        {
-            this.Count = count;
-            this.BeginRange = beginRange;
-            this.EndRange = endRange;
-        }
 
     }
     public class BaseGame
     {
         public bool IsOpen { get; set; }
-        public short Raiting { get; set; }
-        public Difficult Diff { get; set; }
-        public BaseGame(bool isOpen, short raiting, Difficult dif)
-        {
-            this.IsOpen = isOpen;
-            this.Raiting = raiting;
-            this.Diff = dif;
-        }
+        public short Raiting { get; set; }        
+        public int BeginRange { get; set; }
+        public int EndRange { get; set; }
     }
     public class GameAddition : BaseGame
     {
-        public GameAddition(Boolean isOpen, Int16 raiting, Difficult dif) : base(isOpen, raiting, dif)
-        {
-        }
+        public int GameAdditionId { get; set; }
     }
     public class GameSubtraction : BaseGame
     {
-        public GameSubtraction(Boolean isOpen, Int16 raiting, Difficult dif) : base(isOpen, raiting, dif)
-        {
-        }
+        public int GameSubtractionId { get; set; }
     }
     public class GameMultiplication : BaseGame
     {
-        public GameMultiplication(Boolean isOpen, Int16 raiting, Difficult dif) : base(isOpen, raiting, dif)
-        {
-        }
+        public int GameMultiplicationId { get; set; }
     }
     public class GameDivision : BaseGame
     {
-        public GameDivision(Boolean isOpen, Int16 raiting, Difficult dif) : base(isOpen, raiting, dif)
-        {
-        }
+        public int GameDivisionId { get; set; }
     }
 
     public class GameContext : DbContext
     {
-        public DbSet<GameAddition> GamesAddition;
-        public DbSet<GameSubtraction> GamesSubtraction;
-        public DbSet<GameMultiplication> GamesMultiplication;
-        public DbSet<GameDivision> GamesDivision;
+        public DbSet<GameAddition> GamesAddition { get; set; }
+        public DbSet<GameSubtraction> GamesSubtraction { get; set; }
+        public DbSet<GameMultiplication> GamesMultiplication { get; set; }
+        public DbSet<GameDivision> GamesDivision { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

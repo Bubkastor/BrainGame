@@ -19,14 +19,9 @@ namespace ViewModels
 
         public bool IsOpen
         {
-            get { return This.IsOpen; }
+            get { return This.IsOpen;  }
             set { SetProperty(This.IsOpen, value, () => This.IsOpen = value); }
         }
 
-        public Difficult Diff
-        {
-            get { return This.Diff; }
-            set { SetProperty(This.Diff, value, () => This.Diff = Diff); }
-        }
     }
 }

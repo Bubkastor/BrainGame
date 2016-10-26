@@ -8,14 +8,14 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Data
 {
-    public class Difficult
+    public enum GameMode
     {
-        public int DifficultId { get; set; }
-        public int Count { get; set; } = 49;
-        public int BeginRange { get; set; }
-        public int EndRange { get; set; }
-
+        GameAddition,
+        GameSubtraction,
+        GameMultiplication,
+        GameDivision
     }
+
     public class BaseGame
     {
         public bool IsOpen { get; set; }

@@ -23,31 +23,28 @@ namespace BrainGame.View
     {
         private FieldLevelViewModel fieldLevelViewModel;
         private String gameMode;
+
         public LevelPage()
         {
             this.InitializeComponent();
-            fieldLevelViewModel = new FieldLevelViewModel();
+            ;
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            using (var db = new GameContext())
-            {            
-                var param = e.Parameter as string;
-                
-                switch (param)
-                {
-                    case "RuleAddition":
-                        //db.GamesAddition.ToList();
-                        break;
-                    case "RuleMultiplication":                        
-                        //db.GamesMultiplication.ToList();
-                        break;
-                    default:
-                        break;
-                }
-                gameMode = param;
-            }
-        }      
+            var param = e.Parameter as string;
+            switch (param)
+            {
+                case "RuleAddition":
+                    fieldLevelViewModel = new FieldLevelViewModel(GameMode.GameAddition);
+                    break;
+                case "RuleMultiplication":
+                    fieldLevelViewModel = new FieldLevelViewModel(GameMode.GameMultiplication);
+                    break;
+                default:
+                    break;
+            }            
+            gameMode = param;
+        }
     }
 }

@@ -12,22 +12,54 @@ namespace Models
     {
         public bool IsOpen { get; set; } = false;
         public short Raiting { get; set; }
-        public Difficult Diff { get; set; }
+        public int BeginRange { get; set; }
+        public int EndRange { get; set; }
+        public int Count { get; set; }
         public Level() { }
-        public Level(bool isOpen, short raiting, Difficult diff)
+        public Level(bool isOpen, short raiting, int beginRange, int endRange, int count = 49)
         {
             this.IsOpen = isOpen;
             this.Raiting = raiting;
-            this.Diff = diff;
+            this.BeginRange = beginRange;
+            this.EndRange = beginRange;
+            this.Count = count;
         }
     }
     public class FieldLevel
     {
         public List<Level> Levels { get; set; }
-        public FieldLevel()
+        public FieldLevel(GameMode mode)
         {
-            //Levels = FakeService.GetLevels();        
-            Levels = new List<Level>();
+            List<BaseGame> levelsOptions = new List<BaseGame>();
+            using (var db = new GameContext())
+            {
+                switch (mode)
+                {
+                    case GameMode.GameAddition:
+                        levelsOptions = db.GamesAddition.ToList<BaseGame>();
+                        break;
+                    case GameMode.GameDivision:
+                        levelsOptions = db.GamesDivision.ToList<BaseGame>();
+                        break;
+                    case GameMode.GameMultiplication:
+                        levelsOptions = db.GamesMultiplication.ToList<BaseGame>();
+                        break;
+                    case GameMode.GameSubtraction:
+                        levelsOptions = db.GamesSubtraction.ToList<BaseGame>();
+                        break;
+                    default:
+                        break;
+                }
+                Levels = new List<Level>();
+                foreach (var item in levelsOptions)
+                {
+                    Level lvl = new Level(item.IsOpen, item.Raiting, item.BeginRange, item.EndRange);
+                    Levels.Add(lvl);
+                }
+                
+            }
+
+                
         }
         public void Add(Level level)
         {

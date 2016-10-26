@@ -14,10 +14,10 @@ namespace ViewModels
     public class FieldLevelViewModel : NotificationBase
     {
         FieldLevel fieldLevel;
-        public FieldLevelViewModel()
+        public FieldLevelViewModel(GameMode mode)
         {
-            //todo init
-            fieldLevel = new FieldLevel();
+            
+            fieldLevel = new FieldLevel(mode);
             _SelectedIndex = -1;            
             foreach (var level in fieldLevel.Levels)
             {
@@ -25,13 +25,6 @@ namespace ViewModels
                 np.PropertyChanged += Level_OnNotifyPropertyChanged;
                 _Levels.Add(np);
             }
-
-            //for (int i = 0; i < 9; i++)
-            //{
-            //    var level = new Level(true, (short)i, new Difficult(1, 10));
-                
-            //    Add(new LevelViewModel(level));
-            //}
         }
 
         private ObservableCollection<LevelViewModel> _Levels = new ObservableCollection<LevelViewModel>();

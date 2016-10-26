@@ -26,20 +26,37 @@ namespace Data
         public bool IsOpen { get; set; }
         public short Raiting { get; set; }
         public Difficult Diff { get; set; }
-
+        public BaseGame(bool isOpen, short raiting, Difficult dif)
+        {
+            this.IsOpen = isOpen;
+            this.Raiting = raiting;
+            this.Diff = dif;
+        }
     }
     public class GameAddition : BaseGame
     {
+        public GameAddition(Boolean isOpen, Int16 raiting, Difficult dif) : base(isOpen, raiting, dif)
+        {
+        }
     }
     public class GameSubtraction : BaseGame
     {
+        public GameSubtraction(Boolean isOpen, Int16 raiting, Difficult dif) : base(isOpen, raiting, dif)
+        {
+        }
     }
     public class GameMultiplication : BaseGame
-    {        
+    {
+        public GameMultiplication(Boolean isOpen, Int16 raiting, Difficult dif) : base(isOpen, raiting, dif)
+        {
+        }
     }
     public class GameDivision : BaseGame
     {
-    }    
+        public GameDivision(Boolean isOpen, Int16 raiting, Difficult dif) : base(isOpen, raiting, dif)
+        {
+        }
+    }
 
     public class GameContext : DbContext
     {

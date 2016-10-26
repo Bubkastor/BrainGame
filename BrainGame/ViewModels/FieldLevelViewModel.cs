@@ -22,6 +22,7 @@ namespace ViewModels
             foreach (var level in fieldLevel.Levels)
             {
                 var np = new LevelViewModel(level);
+                np.Index = _Levels.Count + 1;
                 np.PropertyChanged += Level_OnNotifyPropertyChanged;
                 _Levels.Add(np);
             }
@@ -50,14 +51,6 @@ namespace ViewModels
         public LevelViewModel SelectedLevel
         {
             get { return (_SelectedIndex >= 0) ? _Levels[_SelectedIndex] : null; }
-        }
-
-        public void Add(LevelViewModel level)
-        {
-            level.PropertyChanged += Level_OnNotifyPropertyChanged;
-            Levels.Add(level);
-            fieldLevel.Add(level);
-            SelectedIndex = Levels.IndexOf(level);
         }
 
         private void Level_OnNotifyPropertyChanged(Object sender, PropertyChangedEventArgs e)

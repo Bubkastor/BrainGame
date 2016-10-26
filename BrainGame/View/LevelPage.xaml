@@ -13,7 +13,7 @@
             <GridView.ItemTemplate>
                 <DataTemplate>
                     <Border CornerRadius="5">
-                        <TextBlock Text="{Binding Raiting}"></TextBlock>
+                        <TextBlock Text="{Binding Index}"></TextBlock>
                     </Border>
                 </DataTemplate>
             </GridView.ItemTemplate>

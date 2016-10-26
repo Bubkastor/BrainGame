@@ -9,6 +9,8 @@ namespace ViewModels
 {
     public class LevelViewModel: NotificationBase<Level>
     {
+        
+
         public LevelViewModel(Level level = null) : base(level) { }
 
         public short Raiting
@@ -21,6 +23,13 @@ namespace ViewModels
         {
             get { return This.IsOpen;  }
             set { SetProperty(This.IsOpen, value, () => This.IsOpen = value); }
+        }
+
+        private int index;
+        public int Index
+        {
+            get { return this.index; }
+            set { SetProperty(this.index, value, () => this.index = value); }
         }
 
     }

@@ -11,7 +11,7 @@ using Windows.UI.Core;
 using System.Threading.Tasks;
 using Windows.UI.Xaml.Navigation;
 using System.Diagnostics;
-    
+
 
 namespace BrainGame
 {    
@@ -22,8 +22,7 @@ namespace BrainGame
 
         public FieldPage()
         {
-            this.InitializeComponent();
-            FieldModel = new FieldSlotViewModel();                                                
+            this.InitializeComponent();                                                   
         }
 
         private void InitGameAndRun()
@@ -35,8 +34,9 @@ namespace BrainGame
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            var param = e.Parameter as string;
-            switch (param)
+            var param = e.Parameter as OptionGame;
+            FieldModel = new FieldSlotViewModel(param);
+            switch (param.ReleMode)
             {
                 case "RuleAddition":
                     rule = new RuleAddition(ref FieldModel, "RuleAddition");
@@ -46,7 +46,7 @@ namespace BrainGame
                     break;
                 default:
                     break;
-            }
+            }            
             Description.Text = rule.Description;
             InitGameAndRun();
         }

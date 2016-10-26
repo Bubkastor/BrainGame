@@ -12,7 +12,7 @@
         <GridView ItemsSource="{x:Bind fieldLevelViewModel.Levels, Mode=OneWay}" SelectedIndex="{x:Bind fieldLevelViewModel.SelectedIndex, Mode=TwoWay}">
             <GridView.ItemTemplate>
                 <DataTemplate>
-                    <Border CornerRadius="5">
+                    <Border CornerRadius="5" Tapped="Border_Tapped">
                         <TextBlock Text="{Binding Index}"></TextBlock>
                     </Border>
                 </DataTemplate>

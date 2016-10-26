@@ -27,7 +27,6 @@ namespace BrainGame.View
         public LevelPage()
         {
             this.InitializeComponent();
-            ;
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -45,6 +44,12 @@ namespace BrainGame.View
                     break;
             }            
             gameMode = param;
+        }
+
+        private void Border_Tapped(Object sender, TappedRoutedEventArgs e)
+        {
+            var level = fieldLevelViewModel.SelectedLevel;            
+            Frame.Navigate(typeof(FieldPage), level.OptionGame);
         }
     }
 }

@@ -6,18 +6,16 @@ using System.Threading.Tasks;
 using System.ComponentModel;
 using System.Collections.ObjectModel;
 using Models;
+using GameLogics;
 
 namespace ViewModels
 {
     public class FieldSlotViewModel : NotificationBase
     {
         
-        public FieldSlotViewModel()
+        public FieldSlotViewModel(OptionGame options)
         {
-            int count = 49;
-            int beginRange = 2;
-            int endRange = 12;
-            FieldSlot fieldSlot = new FieldSlot(count, beginRange, endRange);
+            FieldSlot fieldSlot = new FieldSlot(options.Count, options.BeginRange, options.EndRange);
             foreach (var it in fieldSlot.Numbers)
             {
                 var np = new SlotViewModel(it);

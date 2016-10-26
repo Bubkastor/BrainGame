@@ -9,6 +9,13 @@ using Windows.System.Threading;
 
 namespace GameLogics
 {
+    public class OptionGame
+    {
+        public int BeginRange { get; set; } = 1;
+        public int EndRange { get; set; } = 10;
+        public int Count { get; set; } = 49;
+        public string ReleMode { get; set; } = "RuleAddition";
+    }
     public class EndEventArgs : EventArgs
     {
         public EndEventArgs(TimeSpan time, bool isWin, String gameMode) {

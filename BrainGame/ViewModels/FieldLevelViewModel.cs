@@ -13,15 +13,25 @@ namespace ViewModels
 {
     public class FieldLevelViewModel : NotificationBase
     {
-
+        FieldLevel fieldLevel;
         public FieldLevelViewModel()
         {
             //todo init
-            for (int i = 0; i < 9; i++)
+            fieldLevel = new FieldLevel();
+            _SelectedIndex = -1;            
+            foreach (var level in fieldLevel.Levels)
             {
-                var level = new Level(true, (short)i, new Difficult(1, 1, 10));
-                Add(new LevelViewModel(level));
+                var np = new LevelViewModel(level);
+                np.PropertyChanged += Level_OnNotifyPropertyChanged;
+                _Levels.Add(np);
             }
+
+            //for (int i = 0; i < 9; i++)
+            //{
+            //    var level = new Level(true, (short)i, new Difficult(1, 10));
+                
+            //    Add(new LevelViewModel(level));
+            //}
         }
 
         private ObservableCollection<LevelViewModel> _Levels = new ObservableCollection<LevelViewModel>();
@@ -53,12 +63,13 @@ namespace ViewModels
         {
             level.PropertyChanged += Level_OnNotifyPropertyChanged;
             Levels.Add(level);
+            fieldLevel.Add(level);
             SelectedIndex = Levels.IndexOf(level);
         }
 
         private void Level_OnNotifyPropertyChanged(Object sender, PropertyChangedEventArgs e)
         {
-            //TODO Notify BD
+            fieldLevel.Update((LevelViewModel)sender);
         }
     }
 }

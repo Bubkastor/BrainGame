@@ -13,7 +13,7 @@ namespace Data
         public int Count { get; set; }
         public int BeginRange { get; set; }
         public int EndRange { get; set; }
-        public Difficult(int count, int beginRange, int endRange)
+        public Difficult(int beginRange, int endRange, int count = 49)
         {
             this.Count = count;
             this.BeginRange = beginRange;

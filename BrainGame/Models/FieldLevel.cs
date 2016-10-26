@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Data;
+using ViewModels;
+
 namespace Models
 {
     public class Level
@@ -22,10 +24,10 @@ namespace Models
     public class FieldLevel
     {
         public List<Level> Levels { get; set; }
-        public FieldLevel(List<BaseGame> lists)
+        public FieldLevel()
         {
-            foreach (var item in lists)
-                Levels.Add(new Level(item.IsOpen, item.Raiting, item.Diff));
+            //Levels = FakeService.GetLevels();        
+            Levels = new List<Level>();
         }
         public void Add(Level level)
         {
@@ -36,6 +38,11 @@ namespace Models
         {
             if (Levels.Contains(level))
                 Levels.Remove(level);
+        }
+
+        internal void Update(Level sender)
+        {
+            //DatabaseUpdate
         }
     }
 }

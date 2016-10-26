@@ -13,21 +13,41 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using ViewModels;
+using Data;
 
-// Документацию по шаблону элемента "Пустая страница" см. по адресу https://go.microsoft.com/fwlink/?LinkId=234238
 
 namespace BrainGame.View
 {
-    /// <summary>
-    /// Пустая страница, которую можно использовать саму по себе или для перехода внутри фрейма.
-    /// </summary>
+
     public sealed partial class LevelPage : Page
     {
         private FieldLevelViewModel fieldLevelViewModel;
+        private String gameMode;
         public LevelPage()
         {
             this.InitializeComponent();
             fieldLevelViewModel = new FieldLevelViewModel();
         }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            using (var db = new GameContext())
+            {            
+                var param = e.Parameter as string;
+                
+                switch (param)
+                {
+                    case "RuleAddition":
+                        db.GamesAddition.ToList();
+                        break;
+                    case "RuleMultiplication":                        
+                        db.GamesMultiplication.ToList();
+                        break;
+                    default:
+                        break;
+                }
+                gameMode = param;
+            }
+        }      
     }
 }

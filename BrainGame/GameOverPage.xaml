@@ -7,7 +7,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid Background="Black" >
+    <Grid Background="{ThemeResource AppBarForeground}" >
         <StackPanel Orientation="Vertical">
             <TextBlock x:Name="title" Text="Game Over" HorizontalAlignment="Center" FocusVisualPrimaryBrush="White" Foreground="White" FocusVisualSecondaryBrush="#991B0B0B"/>
             <TextBlock x:Name="score" Text="Score" HorizontalAlignment="Center" FocusVisualPrimaryBrush="White" Foreground="White" FocusVisualSecondaryBrush="#991B0B0B"/>

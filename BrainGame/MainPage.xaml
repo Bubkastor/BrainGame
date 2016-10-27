@@ -68,7 +68,7 @@
         </Storyboard>
     </Page.Resources>
 
-    <Grid  Background="Black">
+    <Grid  Background="{ThemeResource AppBarForeground}">
         <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
             <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
                 <TextBlock Text="BrainGame" Margin="0,20" HorizontalAlignment="Center" FontSize="30" FocusVisualPrimaryBrush="White" Foreground="White" FocusVisualSecondaryBrush="#991B0B0B"/>

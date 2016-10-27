@@ -10,23 +10,117 @@
     mc:Ignorable="d" ScrollViewer.VerticalScrollBarVisibility="Disabled">
     <Page.Resources>
         <converters:ObjectIsSelected x:Key="ObjectIsSelected" />
+        <Storyboard x:Name="OnPause">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="imagePause">
+                <EasingDoubleKeyFrame KeyTime="0" Value="1"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="imageStart">
+                <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.6" Value="1"/>
+            </DoubleAnimationUsingKeyFrames>
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="imageStart">
+                <DiscreteObjectKeyFrame KeyTime="0">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Collapsed</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.3">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Visible</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+            </ObjectAnimationUsingKeyFrames>
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="imagePause">
+                <DiscreteObjectKeyFrame KeyTime="0">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Visible</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.3">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Collapsed</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+            </ObjectAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Name="OnStart">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="imageStart">
+                <EasingDoubleKeyFrame KeyTime="0" Value="1"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="imagePause">
+                <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.6" Value="1"/>
+            </DoubleAnimationUsingKeyFrames>
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="imagePause">
+                <DiscreteObjectKeyFrame KeyTime="0">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Collapsed</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.3">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Visible</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+            </ObjectAnimationUsingKeyFrames>
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="imageStart">
+                <DiscreteObjectKeyFrame KeyTime="0">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Visible</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.3">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Collapsed</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+            </ObjectAnimationUsingKeyFrames>
+        </Storyboard>
     </Page.Resources>
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" ScrollViewer.VerticalScrollBarVisibility="Disabled" >
+    <Grid Background="{ThemeResource AppBarForeground}" 
+          ScrollViewer.VerticalScrollBarVisibility="Disabled" >
         <StackPanel Orientation="Vertical"  VerticalAlignment="Center" HorizontalAlignment="Center" >
-            <TextBlock x:Name="timer" TextWrapping="Wrap" Text="TextBlock" Height="50" Margin="0" HorizontalAlignment="Center" ScrollViewer.VerticalScrollBarVisibility="Disabled"/>
+            <TextBlock x:Name="timer"
+                       TextWrapping="Wrap"
+                       Text=""
+                       Height="50" Margin="0"
+                       HorizontalAlignment="Center"
+                       ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                       FocusVisualPrimaryBrush="White" Foreground="White"
+                       FocusVisualSecondaryBrush="#991B0B0B"/>
 
             <StackPanel Orientation="Horizontal" Width="100" Height="50" ScrollViewer.VerticalScrollBarVisibility="Disabled" >
-                <TextBlock x:Name="Description" Text=".. + ... = "  Width="50" Height="50" />
-                <TextBlock x:Name="Answer" Text="{x:Bind rule.Answer, Mode=TwoWay}"  Width="50" Height="50"/>
+                <TextBlock x:Name="Description" Text=".. + ... = "  Width="50" Height="50" FocusVisualPrimaryBrush="White" Foreground="White" FocusVisualSecondaryBrush="#991B0B0B" />
+                <TextBlock x:Name="Answer" Text="{x:Bind rule.Answer, Mode=TwoWay}"  Width="50" Height="50" FocusVisualPrimaryBrush="White" Foreground="White" FocusVisualSecondaryBrush="#991B0B0B"/>
 
             </StackPanel>
-            <Border CornerRadius="15" BorderThickness="1" Padding="10,10,0,0" Background="#FFD3BFB4" Height="360" Width="360">
-                <GridView x:Name="MainBox" ItemsSource="{x:Bind FieldModel.Slot, Mode=OneWay}" SelectedIndex="{x:Bind FieldModel.SelectedIndex, Mode=TwoWay}"
-                  Width="350" Height="350" SelectionMode="Single" Padding="0" IsDoubleTapEnabled="False" IsHoldingEnabled="False" IsRightTapEnabled="False" AllowFocusOnInteraction="False" Grid.RowSpan="4" Margin="0" >
+            <Border CornerRadius="15" 
+                    BorderThickness="1"
+                    Padding="10,10,0,0"
+                    Background="#FFD3BFB4"
+                    Height="360" Width="360">
+                <GridView x:Name="MainBox" ItemsSource="{x:Bind FieldModel.Slot, Mode=OneWay}"
+                          SelectedIndex="{x:Bind FieldModel.SelectedIndex, Mode=TwoWay}"
+                          Width="350" Height="350"
+                          SelectionMode="Single" Padding="0" 
+                          IsDoubleTapEnabled="False" 
+                          IsHoldingEnabled="False" 
+                          IsRightTapEnabled="False" 
+                          AllowFocusOnInteraction="False">
                     <GridView.ItemTemplate>
                         <DataTemplate >
-                            <Border  CornerRadius="5"   Visibility="{Binding Visible}" Tapped="TextBlock_Tapped" Background="{Binding IsSelected, Converter={StaticResource ObjectIsSelected}, Mode=TwoWay}" Width="45" Height="45" HorizontalAlignment="Center" VerticalAlignment="Center" FocusVisualPrimaryBrush="#00000000" FocusVisualSecondaryBrush="#00000000" >
+                            <Border  CornerRadius="5"
+                                     Visibility="{Binding Visible}" 
+                                     Tapped="TextBlock_Tapped" 
+                                     Background="{Binding IsSelected, Converter={StaticResource ObjectIsSelected}, Mode=TwoWay}"
+                                     Width="45" Height="45"
+                                     HorizontalAlignment="Center" 
+                                     VerticalAlignment="Center" 
+                                     FocusVisualPrimaryBrush="#00000000" 
+                                     FocusVisualSecondaryBrush="#00000000" >
                                 <TextBlock  Text="{Binding Value, Mode=OneWay}"                                
                                      Margin="0" HorizontalAlignment="Center" VerticalAlignment="Center" TextReadingOrder="UseFlowDirection"  LineHeight="10" TextAlignment="Center" SelectionHighlightColor="{x:Null}"/>
                             </Border>
@@ -39,6 +133,7 @@
         <RelativePanel x:Name="pause" Margin="0" Background="#FF836F52" FocusVisualSecondaryBrush="#FFE09797" Visibility="Collapsed">
             <TextBlock x:Name="textBlock" Height="19" TextWrapping="Wrap" Text="PAUSE" Width="62" Margin="0" RelativePanel.AlignVerticalCenterWithPanel="True" RelativePanel.AlignHorizontalCenterWithPanel="True"/>
         </RelativePanel>
-        <Image x:Name="image" Height="50" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="50" Source="Assets/pause.png" Tapped="onPause"/>
+        <Image x:Name="imagePause" Height="50" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="50" Source="Assets/pause.png" Tapped="onPause"/>
+        <Image x:Name="imageStart" Height="50" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="50" Source="Assets/play.png" Tapped="onPause" Opacity="0"/>
     </Grid>
 </Page>

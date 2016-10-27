@@ -91,11 +91,13 @@ namespace BrainGame
         {
             if(pause.Visibility == Windows.UI.Xaml.Visibility.Visible)
             {
+                OnStart.Begin();
                 pause.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
                 rule.isPause = false;
             }
             else
             {
+                OnPause.Begin();
                 pause.Visibility = Windows.UI.Xaml.Visibility.Visible;
                 rule.isPause = true;
             }

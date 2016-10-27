@@ -13,7 +13,11 @@
             <GridView.ItemTemplate>
                 <DataTemplate>
                     <Border CornerRadius="5" Tapped="Border_Tapped">
-                        <TextBlock Text="{Binding Index}"></TextBlock>
+                        <StackPanel Orientation="Vertical" >
+                            <TextBlock Text="{Binding Index}"></TextBlock>
+                            <TextBlock Text="{Binding Raiting}"></TextBlock>
+                            <TextBlock Text="{Binding IsOpen}"></TextBlock>
+                        </StackPanel>
                     </Border>
                 </DataTemplate>
             </GridView.ItemTemplate>

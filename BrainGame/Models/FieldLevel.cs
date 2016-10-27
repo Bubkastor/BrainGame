@@ -63,10 +63,10 @@ namespace Models
                     lvl.RuleMode = ruleMode;
                     Levels.Add(lvl);
                 }
-                
+
             }
 
-                
+
         }
         public void Add(Level level)
         {
@@ -90,20 +90,19 @@ namespace Models
                         GameAddition additionLevel = db.GamesAddition.Single(p => p.BeginRange == sender.BeginRange
                             && p.EndRange == sender.EndRange);
                         changeLevel = additionLevel;
-                        db.GamesAddition.Single(p => p.GameAdditionId == (additionLevel.GameAdditionId + 1)).IsOpen = true;                        
+                        db.GamesAddition.Single(p => p.GameAdditionId == (additionLevel.GameAdditionId + 1)).IsOpen = true;
                         break;
                     case "RuleMultiplication":
                         GameMultiplication multiplicationLevel = db.GamesMultiplication.Single(p => p.BeginRange == sender.BeginRange
                             && p.EndRange == sender.EndRange);
                         changeLevel = multiplicationLevel;
                         db.GamesMultiplication.Single(p => p.GameMultiplicationId == (multiplicationLevel.GameMultiplicationId + 1)).IsOpen = true;
-                        break;                    
+                        break;
                     default:
                         break;
                 }
                 changeLevel.Raiting = sender.Raiting;
                 db.SaveChanges();
-                }
             }
         }
     }

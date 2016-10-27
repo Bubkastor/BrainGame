@@ -29,6 +29,7 @@ namespace BrainGame
         public MainPage()
         {
             this.InitializeComponent();
+            InitDB();
         }
 
         private void ShowGameMode(object sender, RoutedEventArgs e)
@@ -48,13 +49,28 @@ namespace BrainGame
             CloseGameMode.Begin();
         }
 
-        private void Image_Tapped(Object sender, TappedRoutedEventArgs e)
+        private void InitDB()
         {
 
             using (var db = new GameContext())
-            {
-
-              
+            {                
+                if(db.GamesMultiplication.ToList().Count == 0)
+                {
+                    var collection = GamesMultiplication();
+                    foreach (var item in collection)
+                    {
+                        db.GamesMultiplication.Add(item);
+                    }
+                }
+                if(db.GamesAddition.ToList().Count == 0)
+                {
+                    var collection = GamesAddition();
+                    foreach (var item in collection)
+                    {
+                        db.GamesAddition.Add(item);
+                    }
+                }
+                
                 db.SaveChanges();
             }
 
@@ -71,7 +87,20 @@ namespace BrainGame
             result.Add(new GameMultiplication { IsOpen = false, Raiting = 0, BeginRange = 7, EndRange = 16 });
             result.Add(new GameMultiplication { IsOpen = false, Raiting = 0, BeginRange = 8, EndRange = 17 });
             result.Add(new GameMultiplication { IsOpen = false, Raiting = 0, BeginRange = 9, EndRange = 18 });
-            result.Add(new GameMultiplication { IsOpen = false, Raiting = 0, BeginRange = 10, EndRange = 19 });
+            return result;
+        }
+        private List<GameAddition> GamesAddition()
+        {
+            List<GameAddition> result = new List<GameAddition>();
+            result.Add(new GameAddition { IsOpen = true, Raiting = 0, BeginRange = 1, EndRange = 10 });
+            result.Add(new GameAddition { IsOpen = false, Raiting = 0, BeginRange = 2, EndRange = 11 });
+            result.Add(new GameAddition { IsOpen = false, Raiting = 0, BeginRange = 3, EndRange = 12 });
+            result.Add(new GameAddition { IsOpen = false, Raiting = 0, BeginRange = 4, EndRange = 13 });
+            result.Add(new GameAddition { IsOpen = false, Raiting = 0, BeginRange = 5, EndRange = 14 });
+            result.Add(new GameAddition { IsOpen = false, Raiting = 0, BeginRange = 6, EndRange = 15 });
+            result.Add(new GameAddition { IsOpen = false, Raiting = 0, BeginRange = 7, EndRange = 16 });
+            result.Add(new GameAddition { IsOpen = false, Raiting = 0, BeginRange = 8, EndRange = 17 });
+            result.Add(new GameAddition { IsOpen = false, Raiting = 0, BeginRange = 9, EndRange = 18 });
             return result;
         }
     }

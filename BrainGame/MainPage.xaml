@@ -77,7 +77,6 @@
             </StackPanel>
             <StackPanel x:Name="MainButton" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" FocusVisualPrimaryBrush="#FF06B816" FocusVisualSecondaryBrush="#FF4706F3" Margin="0" Padding="0">
                 <Image Tapped="ShowGameMode" Source="Assets/play.png" Width="50" Height="50" Margin="10"/>
-                <Image Source="Assets/options.png" Width="50" Height="50" Margin="10" Tapped="Image_Tapped" Visibility="Collapsed"/>
             </StackPanel>
             <StackPanel x:Name="GameStart" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Collapsed">
                 <Image Tapped="GamePlus" Source="Assets/plus.png" Width="50" Height="50" Margin="10"/>

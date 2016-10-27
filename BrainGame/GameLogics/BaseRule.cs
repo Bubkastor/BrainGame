@@ -14,7 +14,7 @@ namespace GameLogics
         public int BeginRange { get; set; } = 1;
         public int EndRange { get; set; } = 10;
         public int Count { get; set; } = 49;
-        public string ReleMode { get; set; } = "RuleAddition";
+        public string RuleMode { get; set; } = "RuleAddition";
     }
     public class EndEventArgs : EventArgs
     {
@@ -23,8 +23,8 @@ namespace GameLogics
             IsWin = isWin;
             GameMode = gameMode;
         }
-        public TimeSpan Time { get; private set; } // readonly
-        public bool IsWin { get; private set; } // readonly
+        public TimeSpan Time { get; private set; } 
+        public bool IsWin { get; private set; } 
         public String GameMode { get; set; }
     }
 

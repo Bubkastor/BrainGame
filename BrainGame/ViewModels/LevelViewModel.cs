@@ -39,7 +39,7 @@ namespace ViewModels
                 option.BeginRange = This.BeginRange;
                 option.EndRange = This.EndRange;
                 option.Count = This.Count;
-                option.ReleMode = This.RuleMode;
+                option.RuleMode = This.RuleMode;
                 return option;
             }
         }

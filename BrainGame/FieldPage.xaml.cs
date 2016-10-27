@@ -19,6 +19,7 @@ namespace BrainGame
     {
         public FieldSlotViewModel FieldModel;
         private BaseRule rule;
+        private LevelViewModel level;
 
         public FieldPage()
         {
@@ -34,9 +35,9 @@ namespace BrainGame
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            var param = e.Parameter as OptionGame;
-            FieldModel = new FieldSlotViewModel(param);
-            switch (param.ReleMode)
+            level = e.Parameter as LevelViewModel;
+            FieldModel = new FieldSlotViewModel(level.OptionGame);
+            switch (level.OptionGame.RuleMode)
             {
                 case "RuleAddition":
                     rule = new RuleAddition(ref FieldModel, "RuleAddition");
@@ -62,6 +63,8 @@ namespace BrainGame
         {
             await Dispatcher.TryRunAsync(CoreDispatcherPriority.High, () => {
                 var arg = (EndEventArgs)e;
+                if (arg.IsWin)
+                    level.Raiting = (short)(arg.Time.TotalSeconds * 10);
                 Frame.Navigate(typeof(GameOverPage), arg);
 
             });

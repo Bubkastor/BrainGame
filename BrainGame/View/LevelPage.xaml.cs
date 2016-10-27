@@ -49,7 +49,7 @@ namespace BrainGame.View
         private void Border_Tapped(Object sender, TappedRoutedEventArgs e)
         {
             var level = fieldLevelViewModel.SelectedLevel;            
-            Frame.Navigate(typeof(FieldPage), level.OptionGame);
+            Frame.Navigate(typeof(FieldPage), level);
         }
     }
 }

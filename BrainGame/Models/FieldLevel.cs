@@ -81,7 +81,30 @@ namespace Models
 
         internal void Update(Level sender)
         {
-            //DatabaseUpdate
+            using (var db = new GameContext())
+            {
+                BaseGame changeLevel = new BaseGame();
+                switch (sender.RuleMode)
+                {
+                    case "RuleAddition":
+                        GameAddition additionLevel = db.GamesAddition.Single(p => p.BeginRange == sender.BeginRange
+                            && p.EndRange == sender.EndRange);
+                        changeLevel = additionLevel;
+                        db.GamesAddition.Single(p => p.GameAdditionId == (additionLevel.GameAdditionId + 1)).IsOpen = true;                        
+                        break;
+                    case "RuleMultiplication":
+                        GameMultiplication multiplicationLevel = db.GamesMultiplication.Single(p => p.BeginRange == sender.BeginRange
+                            && p.EndRange == sender.EndRange);
+                        changeLevel = multiplicationLevel;
+                        db.GamesMultiplication.Single(p => p.GameMultiplicationId == (multiplicationLevel.GameMultiplicationId + 1)).IsOpen = true;
+                        break;                    
+                    default:
+                        break;
+                }
+                changeLevel.Raiting = sender.Raiting;
+                db.SaveChanges();
+                }
+            }
         }
     }
 }

@@ -30,11 +30,12 @@
                              CornerRadius="5" 
                              Background="#FF808080"
                              Tapped="Border_Tapped">
-                            <StackPanel Orientation="Vertical" 
-                                        HorizontalAlignment="Center" VerticalAlignment="Center">
-                                <TextBlock Text="{Binding Index}"></TextBlock>
-                                <TextBlock Text="{Binding Raiting}"></TextBlock>
-                                <TextBlock Text="{Binding IsOpen}"></TextBlock>
+                            <StackPanel Orientation="Vertical">
+                                <Border BorderThickness="1" CornerRadius="5" Background="#FFD7D8D5" VerticalAlignment="Center" Height="60">
+                                    <TextBlock Text="{Binding Index}" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+                                </Border>
+                                <TextBlock Text="{Binding Raiting}" HorizontalAlignment="Center"></TextBlock>
+                                <TextBlock Visibility="{Binding IsOpen}" Text="Open" HorizontalAlignment="Center"></TextBlock>
                             </StackPanel>
                         </Border>
                     </DataTemplate>

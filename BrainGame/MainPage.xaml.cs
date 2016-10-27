@@ -53,13 +53,16 @@ namespace BrainGame
         {
 
             using (var db = new GameContext())
-            {                
-                if(db.GamesMultiplication.ToList().Count == 0)
+            {
+
+                if (db.GamesMultiplication.ToList().Count == 0)
                 {
                     var collection = GamesMultiplication();
                     foreach (var item in collection)
                     {
                         db.GamesMultiplication.Add(item);
+                        db.SaveChanges();
+
                     }
                 }
                 if(db.GamesAddition.ToList().Count == 0)
@@ -68,10 +71,9 @@ namespace BrainGame
                     foreach (var item in collection)
                     {
                         db.GamesAddition.Add(item);
+                        db.SaveChanges();
                     }
-                }
-                
-                db.SaveChanges();
+                }                
             }
 
         }

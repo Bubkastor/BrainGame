@@ -63,6 +63,7 @@ namespace BrainGame
         {
             await Dispatcher.TryRunAsync(CoreDispatcherPriority.High, () => {
                 var arg = (EndEventArgs)e;
+                arg.level = level;
                 if (arg.IsWin)
                     level.Raiting = (short)(arg.Time.TotalSeconds * 10);
                 Frame.Navigate(typeof(GameOverPage), arg);

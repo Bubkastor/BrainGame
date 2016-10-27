@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Data;
 using ViewModels;
+using System.Diagnostics;
 
 namespace Models
 {
@@ -81,6 +82,7 @@ namespace Models
 
         internal void Update(Level sender)
         {
+            Debug.WriteLine("Update start");
             using (var db = new GameContext())
             {
                 BaseGame changeLevel = new BaseGame();
@@ -104,6 +106,7 @@ namespace Models
                 changeLevel.Raiting = sender.Raiting;
                 db.SaveChanges();
             }
+            Debug.WriteLine("Update end");
         }
     }
 }

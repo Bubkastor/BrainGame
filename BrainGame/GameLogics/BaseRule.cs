@@ -23,6 +23,7 @@ namespace GameLogics
             IsWin = isWin;
             GameMode = gameMode;
         }
+        public LevelViewModel level { get; set; }
         public TimeSpan Time { get; private set; } 
         public bool IsWin { get; private set; } 
         public String GameMode { get; set; }

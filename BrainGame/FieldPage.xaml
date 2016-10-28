@@ -80,21 +80,19 @@
         </Storyboard>
     </Page.Resources>
 
-    <Grid Background="{ThemeResource AppBarForeground}" 
+    <Grid Background="{ThemeResource AppBarBackground}" 
           ScrollViewer.VerticalScrollBarVisibility="Disabled" >
         <StackPanel Orientation="Vertical"  VerticalAlignment="Center" HorizontalAlignment="Center" >
             <TextBlock x:Name="timer"
                        TextWrapping="Wrap"
                        Text=""
                        Height="50" Margin="0"
-                       HorizontalAlignment="Center"
-                       ScrollViewer.VerticalScrollBarVisibility="Disabled"
-                       FocusVisualPrimaryBrush="White" Foreground="White"
-                       FocusVisualSecondaryBrush="#991B0B0B"/>
+                       HorizontalAlignment="Center"                                              
+                       FontSize="30"/>
 
-            <StackPanel Orientation="Horizontal" Width="100" Height="50" ScrollViewer.VerticalScrollBarVisibility="Disabled" >
-                <TextBlock x:Name="Description" Text=".. + ... = "  Width="50" Height="50" FocusVisualPrimaryBrush="White" Foreground="White" FocusVisualSecondaryBrush="#991B0B0B" />
-                <TextBlock x:Name="Answer" Text="{x:Bind rule.Answer, Mode=TwoWay}"  Width="50" Height="50" FocusVisualPrimaryBrush="White" Foreground="White" FocusVisualSecondaryBrush="#991B0B0B"/>
+            <StackPanel Orientation="Horizontal" ScrollViewer.VerticalScrollBarVisibility="Disabled" VerticalAlignment="Center" HorizontalAlignment="Center" >
+                <TextBlock x:Name="Description" Text=".. + ... = " FontSize="30"/>
+                <TextBlock x:Name="Answer" Text="{x:Bind rule.Answer, Mode=TwoWay}" FontSize="30"/>
 
             </StackPanel>
             <Border CornerRadius="15" 

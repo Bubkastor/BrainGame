@@ -8,39 +8,42 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid Background="{ThemeResource AppBarForeground}">
-        <Border 
+    <Grid Background="{ThemeResource AppBarBackground}">
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+            <TextBlock x:Name="textBlock" TextWrapping="Wrap" Text="Select Level" HorizontalAlignment="Center" FontSize="50"/>
+            <Border 
            CornerRadius="15" 
            BorderThickness="1"
            Padding="10,10,0,0"
            Background="#FFD3BFB4"
            Width="330"
-           Height="330">
-            <GridView ItemsSource="{x:Bind fieldLevelViewModel.Levels, Mode=OneWay}"
+           Height="330" Margin="0">
+                <GridView ItemsSource="{x:Bind fieldLevelViewModel.Levels, Mode=OneWay}"
                   SelectedIndex="{x:Bind fieldLevelViewModel.SelectedIndex, Mode=TwoWay}"
                   VerticalAlignment="Center"                    
                   VerticalContentAlignment="Stretch" 
                   ScrollViewer.VerticalScrollBarVisibility="Disabled" 
                   ShowsScrollingPlaceholders="False">
 
-                <GridView.ItemTemplate>
-                    <DataTemplate>
-                        <Border  Width="100" Height="100"
+                    <GridView.ItemTemplate>
+                        <DataTemplate>
+                            <Border  Width="100" Height="100"
                              BorderThickness="1"
                              CornerRadius="5" 
                              Background="#FF808080"
                              Tapped="Border_Tapped">
-                            <StackPanel Orientation="Vertical">
-                                <Border BorderThickness="1" CornerRadius="5" Background="#FFD7D8D5" VerticalAlignment="Center" Height="60">
-                                    <TextBlock Text="{Binding Index}" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
-                                </Border>
-                                <TextBlock Text="{Binding Raiting}" HorizontalAlignment="Center"></TextBlock>
-                                <TextBlock Visibility="{Binding IsOpen}" Text="Open" HorizontalAlignment="Center"></TextBlock>
-                            </StackPanel>
-                        </Border>
-                    </DataTemplate>
-                </GridView.ItemTemplate>
-            </GridView>
-        </Border>
+                                <StackPanel Orientation="Vertical">
+                                    <Border BorderThickness="1" CornerRadius="5" Background="#FFD7D8D5" VerticalAlignment="Center" Height="60">
+                                        <TextBlock Text="{Binding Index}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Border>
+                                    <TextBlock Text="{Binding Raiting}" HorizontalAlignment="Center"/>
+                                    <TextBlock Visibility="{Binding IsOpen}" Text="Open" HorizontalAlignment="Center"/>
+                                </StackPanel>
+                            </Border>
+                        </DataTemplate>
+                    </GridView.ItemTemplate>
+                </GridView>
+            </Border>
+        </StackPanel>
     </Grid>
 </Page>

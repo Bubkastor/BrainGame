@@ -34,7 +34,15 @@ namespace BrainGame
             var param = e.Parameter as EndEventArgs;
             level = param.level;
             title.Text = param.IsWin ? "You Win" : "You Lose";
-            score.Text = "Score: " + (param.Time.TotalSeconds * 10).ToString();
+            if (param.IsWin)
+            {
+                next_play.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                next_play.Visibility = Visibility.Collapsed;
+            }
+                score.Text = "Score: " + (param.Time.TotalSeconds * 10).ToString();
             gameMode = param.GameMode;
         }
 

@@ -7,14 +7,14 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid Background="{ThemeResource AppBarForeground}" >
-        <StackPanel Orientation="Vertical">
-            <TextBlock x:Name="title" Text="Game Over" HorizontalAlignment="Center" FocusVisualPrimaryBrush="White" Foreground="White" FocusVisualSecondaryBrush="#991B0B0B"/>
-            <TextBlock x:Name="score" Text="Score" HorizontalAlignment="Center" FocusVisualPrimaryBrush="White" Foreground="White" FocusVisualSecondaryBrush="#991B0B0B"/>
+    <Grid Background="{ThemeResource AppBarBackground}" >
+        <StackPanel Orientation="Vertical" VerticalAlignment="Center">
+            <TextBlock x:Name="title" Text="Game Over" HorizontalAlignment="Center" FontSize="30"/>
+            <TextBlock x:Name="score" Text="Score" HorizontalAlignment="Center" FontSize="30"/>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                <Button Content="Current Level" FocusVisualPrimaryBrush="White"  Background="White" Margin="10" Click="Button_Click_Current_Game"></Button>
-                <Button Content="Next Level" FocusVisualPrimaryBrush="White"  Background="White" Margin="10" Click="Button_Click_Next_Level"></Button>
-                <Button Content="Menu" FocusVisualPrimaryBrush="White"  Background="White" Margin="10" Click="Button_Click_Main_Menu"></Button>
+                <Button x:Name="Replay" Content="Replay Level"  Margin="10" Click="Button_Click_Current_Game"></Button>
+                <Button x:Name="next_play" Content="Next Level"  Margin="10" Click="Button_Click_Next_Level" Visibility="Collapsed"></Button>
+                <Button Content="Menu" Margin="10" Click="Button_Click_Main_Menu"></Button>
             </StackPanel>
         </StackPanel>
 
